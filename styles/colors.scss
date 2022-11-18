@@ -1,0 +1,53 @@
+:root {
+  --dark: #303030;
+  --background: #212121;
+  --primary: #ffe240;
+  --white: white;
+  --font-shade-1: #b3b3b3;
+  --accent-1: #00ffff;
+  --accent-2: #e31fff;
+  --accent-3: #0057ff;
+  --accent-4: #e31f71;
+  --accent-5: #00aeff;
+  --accent-6: #a86555;
+  --shade-1: #2b2b2b;
+  --shade-2: #454545;
+  --shade-3: #5e5e5e;
+  --shade-4: #787878;
+
+  --h0: 47.8px;
+  --h1: 2.488em;
+  --h2: 2.074em;
+  --h3: 1.728em;
+  --h4: 1.44em;
+  --h5: 1.2em;
+  --h6: 1em;
+  --h-1: 0.833em;
+
+
+  --transition-250-eio: 250ms ease-in-out;
+  --transition-500-eio: 500ms ease-in-out;
+
+  --box-shadow-primary-0-2-12-10: 0 2px 12px rgba(var(--primary), .1);
+  --box-shadow-primary-0-4-12-10: 0 4px 12px rgba(var(--primary), .1);
+
+  --box-shadow-dark-0-2-12-10: 0 2px 12px rgba(#000, .1);
+  --box-shadow-dark-0-4-12-10: 0 4px 12px rgba(#000, .1);
+
+  --mobile-min: 320px;
+  --mobile-max: 480px;
+
+  --tablet-min: 481px;
+  --tablet-max: 768px;
+
+  --laptop-min: 769px;
+  --laptop-max: 1367px;
+
+  --desktop-min: 1367px;
+  --desktop-max: 2048px;
+
+  --mobile: '(min-width: $mobile-min) and (max-width: $mobile-max)';
+  --tablet: '(min-width: $tablet-min) and (max-width: $tablet-max)';
+  --laptop: '(min-width: $laptop-min) and (max-width: $laptop-max)';
+  --desktop: '(min-width: $desktop-min) and (max-width: $desktop-max)';
+}

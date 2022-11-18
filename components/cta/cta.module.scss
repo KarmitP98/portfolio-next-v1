@@ -1,0 +1,53 @@
+.cta{
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0.5em 2em;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+  transition: var(--transition-250-eio);
+  font-weight: 500;
+  gap: 0.5em;
+
+  &:hover{
+    background-color: var(--dark);
+  }
+
+  &.sm{
+	border-radius: 0.125em;
+  }
+
+  &.md{
+	border-radius: 0.25em;
+  }
+
+  &.full{
+	border-radius: 500em;
+  }
+
+  &.primary{
+    background-color: var(--primary);
+    color: var(--dark);
+    border: 1px solid var(--primary);
+
+    &:hover{
+      border-color: var(--primary);
+      background-color: transparent;
+      color: var(--primary);
+    }
+  }
+
+  &.secondary{
+    background-color: var(--background);
+    color: var(--primary);
+
+    &:hover{
+      background-color: var(--dark);
+    }
+  }
+
+}
