@@ -1,9 +1,14 @@
 import type {NextPage} from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
-import Cta from '../components/cta/cta';
+import Navbar from '../components/navbar/navbar';
+import {useState} from 'react';
 
 const Home: NextPage = () => {
+	
+	const [activeTab, setActiveTab] = useState('home');
+	const [opened, setOpened] = useState(false);
+	
 	return (
 	  <div className={styles.container}>
 		  <Head>
@@ -13,13 +18,7 @@ const Home: NextPage = () => {
 		  </Head>
 		  
 		  <main className={styles.main}>
-			  Karmit Patel Portfolio
-			  <Cta label={'Hello World'} theme={'primary'} shape={'md'}>
-				  Home
-				  <span className='material-icons-round'>
-					  home
-				  </span>
-			  </Cta>
+			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
 		  </main>
 		  
 		  <footer className={styles.footer}>

@@ -1,8 +1,7 @@
 export interface CTA {
-	label: string;
 	theme: 'primary' | 'secondary' | 'none';
-	shape?: 'sm' | 'md' | 'full';
+	shape?: 'sm' | 'md' | 'full' | 'icon';
 	children?: any;
 	
-	[x: string]: any
+	[x: string]: any;
 }
