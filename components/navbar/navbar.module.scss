@@ -6,7 +6,7 @@
   justify-content: space-between;
   width: 100%;
   height: fit-content;
-  padding: 1em 5%;
+  padding: 1em 15%;
   background-color: var(--dark);
 
   .links {
@@ -49,7 +49,7 @@
 	  left: auto;
 	  flex-flow: row nowrap;
 	  width: fit-content;
-	  gap: 1em;
+	  gap: 0;
 
 	  li button {
 		font-size: medium;

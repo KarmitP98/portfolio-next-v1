@@ -3,11 +3,28 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 import Navbar from '../components/navbar/navbar';
 import {useState} from 'react';
+import {ProjectPropsModel} from '../models/props/project-props.model';
+import Project from '../components/project/project';
 
 const Home: NextPage = () => {
 	
 	const [activeTab, setActiveTab] = useState('home');
 	const [opened, setOpened] = useState(false);
+	
+	const projects: ProjectPropsModel[] = [
+		{
+			description: 'Stay connected with your friends and family with a modern, minimalist chat application. It allows sharing your memories with your loved ones with stories.',
+			imageName: 'Iphone-Mockup.png',
+			title: 'Snazzy Chat',
+			projectURL: 'https://github.com/KarmitP98/Snazzy-Chat'
+		},
+		{
+			description: 'Check product inventories in real time and plan accordingly. Browse products from a plethora of stores and manage your shopping at the tip of your fingers.',
+			imageURL: 'https://firebasestorage.googleapis.com/v0/b/karmitp98.appspot.com/o/MacBook-Mockup.png?alt=media&token=af44fe34-1144-403e-8360-5f8b03783c81',
+			title: 'Shoppers Land',
+			projectURL: 'https://smart-shoppers-2a1ab.web.app/'
+		}
+	];
 	
 	return (
 	  <div className={styles.container}>
@@ -19,6 +36,9 @@ const Home: NextPage = () => {
 		  
 		  <main className={styles.main}>
 			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
+			  {
+				  projects.map((project, index) => <Project {...project} key={project.title + index}/>)
+			  }
 		  </main>
 		  
 		  <footer className={styles.footer}>
