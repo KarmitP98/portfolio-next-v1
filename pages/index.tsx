@@ -16,13 +16,17 @@ const Home: NextPage = () => {
 			description: 'Stay connected with your friends and family with a modern, minimalist chat application. It allows sharing your memories with your loved ones with stories.',
 			imageName: 'Iphone-Mockup.png',
 			title: 'Snazzy Chat',
-			projectURL: 'https://github.com/KarmitP98/Snazzy-Chat'
+			projectURL: 'https://github.com/KarmitP98/Snazzy-Chat',
+			imageLoad: 'down',
+			imageSide: 'end'
 		},
 		{
 			description: 'Check product inventories in real time and plan accordingly. Browse products from a plethora of stores and manage your shopping at the tip of your fingers.',
 			imageURL: 'https://firebasestorage.googleapis.com/v0/b/karmitp98.appspot.com/o/MacBook-Mockup.png?alt=media&token=af44fe34-1144-403e-8360-5f8b03783c81',
 			title: 'Shoppers Land',
-			projectURL: 'https://smart-shoppers-2a1ab.web.app/'
+			projectURL: 'https://smart-shoppers-2a1ab.web.app/',
+			imageLoad: 'right',
+			imageSide: 'start'
 		}
 	];
 	

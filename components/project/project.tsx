@@ -3,13 +3,13 @@ import classes from './project.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
 
-const Project = ({title, description, imageName, imageURL, projectURL}: ProjectPropsModel) => {
+const Project = ({title, description, imageName, imageURL, projectURL, imageSide, imageLoad}: ProjectPropsModel) => {
 	
 	const getImageURL = (): string => imageName ? `/assets/${imageName}` : imageURL || '';
 	
 	return (
 	  <section className={classes.page}>
-		  <div className={classes.contentPage}>
+		  <div className={`${classes.contentPage} ${classes[imageSide]}`}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>
 				  <p>{description}</p>
@@ -25,7 +25,10 @@ const Project = ({title, description, imageName, imageURL, projectURL}: ProjectP
 				  </div>
 			  </div>
 			  <div className={classes.contentImage}>
-				  <Image src={getImageURL()} alt={`${title}-Image`} width={1920} height={1080}/>
+				  <Image
+				    src={getImageURL()} alt={`${title}-Image`} width={1920} height={1080}
+				    className={`${classes[imageLoad]}`}
+				  />
 			  </div>
 		  </div>
 	  </section>
