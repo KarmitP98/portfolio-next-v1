@@ -5,6 +5,8 @@ import Navbar from '../components/navbar/navbar';
 import {useState} from 'react';
 import {ProjectPropsModel} from '../models/props/project-props.model';
 import Project from '../components/project/project';
+import {ServicesLanguagesCommonPropsModel} from '../models/props/services-languages-common-props.model';
+import ServiceLanguage from '../components/servicelanguage/servicelanguage';
 
 const Home: NextPage = () => {
 	
@@ -30,6 +32,56 @@ const Home: NextPage = () => {
 		}
 	];
 	
+	const languages: ServicesLanguagesCommonPropsModel = {
+		title: 'Languages I work with',
+		subtitle: 'YOU KNOW... THE BIG 3!',
+		largeCards: [
+			{
+				title: 'Angular',
+				show: true,
+				description: 'I apply DRY principal and design reusable components to greatly reduce development time.',
+				icon: '/assets/svg/logo-angular.svg',
+				theme: 'accent-4'
+			},
+			{
+				title: 'React',
+				description: 'I design and develop web applications using modern hook based architecture.',
+				theme: 'accent-5',
+				show: true,
+				icon: '/assets/svg/logo-react.svg'
+			},
+			{
+				title: 'Vue',
+				description: 'I design and develop highly responsive web applications to get you up and running quickly.',
+				theme: 'accent-1',
+				show: true,
+				icon: '/assets/svg/logo-vue.svg'
+			}
+		]
+	};
+	
+	const services: ServicesLanguagesCommonPropsModel = {
+		title: 'Services I Provide',
+		subtitle: 'DESIGN & DEVELOP',
+		largeCards: [
+			{
+				title: 'Frontend Development',
+				show: true,
+				description: 'I develop feature rich web application, websites as well as E-Commerce Platform to solve your business needs.',
+				icon: '/assets/svg/code.svg',
+				theme: 'accent-8'
+			},
+			{
+				title: 'UI / UX Designing',
+				description: 'I design eye pleasing and minimalistic Web Fronts that increase conversion rate and user interaction.',
+				theme: 'accent-5',
+				show: true,
+				icon: '/assets/svg/git-branch.svg'
+			}
+		],
+		ctaURL: 'https://github.com/KarmitP98'
+	};
+	
 	return (
 	  <div className={styles.container}>
 		  <Head>
@@ -40,6 +92,8 @@ const Home: NextPage = () => {
 		  
 		  <main className={styles.main}>
 			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
+			  <ServiceLanguage {...languages}/>
+			  <ServiceLanguage {...services}/>
 			  {
 				  projects.map((project, index) => <Project {...project} key={project.title + index}/>)
 			  }

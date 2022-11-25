@@ -1,0 +1,46 @@
+$themes: 8;
+
+@mixin themeMixin {
+  @for $i from 1 through $themes {
+	&.accent-#{$i} {
+	  color: var(--accent-#{$i});
+
+	  &:before {
+		background-color: var(--accent-#{$i}) !important;
+	  }
+	}
+  }
+}
+
+.tag {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.5em 1em;
+  user-select: none;
+  border-radius: 0.25em;
+  background-color: var(--dark);
+
+  @include themeMixin;
+
+  &:before {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	content: '';
+	transition: var(--transition-250-eio);
+	transform: scaleX(0);
+  }
+
+  &:hover {
+	&:before {
+	  transform: scaleX(1);
+	}
+  }
+}
