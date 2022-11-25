@@ -7,6 +7,7 @@ import {ProjectPropsModel} from '../models/props/project-props.model';
 import Project from '../components/project/project';
 import {ServicesLanguagesCommonPropsModel} from '../models/props/services-languages-common-props.model';
 import ServiceLanguage from '../components/servicelanguage/servicelanguage';
+import Strip from '../components/strip/strip';
 
 const Home: NextPage = () => {
 	
@@ -97,6 +98,7 @@ const Home: NextPage = () => {
 			  {
 				  projects.map((project, index) => <Project {...project} key={project.title + index}/>)
 			  }
+			  <Strip/>
 		  </main>
 		  
 		  <footer className={styles.footer}>
