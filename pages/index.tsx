@@ -12,6 +12,7 @@ import Cta from '../components/cta/cta';
 import Image from 'next/image';
 import Footer from '../components/footer/footer';
 import Hero from '../components/hero/hero';
+import Contact from '../components/contact/contact';
 
 const Home: NextPage = () => {
 	
@@ -120,6 +121,7 @@ const Home: NextPage = () => {
 					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
 				  </Cta>
 			  </Strip>
+			  <Contact/>
 		  </main>
 		  <Footer/>
 	  </div>
