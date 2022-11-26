@@ -48,6 +48,7 @@
 
 .portrait {
   position: absolute;
+  z-index: -1;
   right: 5%;
   bottom: 0;
   width: 500px;
@@ -62,8 +63,9 @@
 
   .portrait {
 	right: 20%;
-	width: 700px;
-	height: 700px;
+	bottom: 10%;
+	width: 600px;
+	height: 600px;
 	filter: grayscale(0);
   }
 }

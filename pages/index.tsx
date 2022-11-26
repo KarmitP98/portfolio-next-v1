@@ -109,7 +109,7 @@ const Home: NextPage = () => {
 		  <main className={styles.main}>
 			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
 			  <Hero/>
-			  <Project {...aboutMe}/>
+			  <Project {...aboutMe} name={'about'}/>
 			  <ServiceLanguage {...languages}/>
 			  <ServiceLanguage {...services}/>
 			  {

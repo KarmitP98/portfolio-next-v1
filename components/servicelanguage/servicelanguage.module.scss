@@ -10,11 +10,11 @@
 	text-align: center;
 
 	h1 {
-	  font-size: xxx-large;
+	  font-size: x-large;
 	}
 
 	h3 {
-	  letter-spacing: 2px;
+	  letter-spacing: 1px;
 	  color: var(--shade-4);
 	}
   }
@@ -61,6 +61,16 @@
 	width: 70%;
 	height: 80%;
 	gap: 3em;
+
+	.contentInfo {
+	  h1 {
+		font-size: xxx-large;
+	  }
+
+	  h3 {
+		letter-spacing: 2px;
+	  }
+	}
 
 	.contentCards {
 	  gap: 4em;

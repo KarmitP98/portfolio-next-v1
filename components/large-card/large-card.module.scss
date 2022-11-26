@@ -42,10 +42,11 @@ $themes: 9;
 	padding: 1em 1em 0;
 	grid-template-columns: 52px 1fr;
 	grid-template-rows: 1fr;
-	grid-gap: 1em;
+	grid-gap: 0.5em;
+	place-items: center flex-start;
 
 	h1 {
-	  font-size: xx-large;
+	  font-size: x-large;
 	  word-wrap: break-word;
 	}
 
@@ -66,7 +67,7 @@ $themes: 9;
   }
 
   p {
-	font-size: large;
+	font-size: medium;
 	padding: 0 1em calc(1em + 10px);
   }
 
@@ -83,4 +84,22 @@ $themes: 9;
   &:hover {
 	transform: scale(1.05);
   }
+}
+
+
+@media screen and (min-width: 1130px) {
+  .largeCard {
+	.titleBar {
+	  grid-gap: 1em;
+
+	  h1 {
+		font-size: xx-large;
+	  }
+	}
+
+	p {
+	  font-size: large;
+	}
+  }
+
 }

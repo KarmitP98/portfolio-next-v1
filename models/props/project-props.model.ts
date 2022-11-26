@@ -7,4 +7,6 @@ export interface ProjectPropsModel {
 	imageURL?: string;
 	imageName?: string;
 	ctaLabel?: string;
+	
+	[x: string]: any;
 }

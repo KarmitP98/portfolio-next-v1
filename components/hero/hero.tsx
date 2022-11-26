@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Hero = () => {
 	return (
-	  <section className={'page'}>
+	  <section className={'page hero'}>
 		  <section className={classes.contentPage}>
 			  <div className={classes.header}>
 				  <h2 className={classes.subtitle}>
@@ -25,7 +25,7 @@ const Hero = () => {
 			  </div>
 			  <div className={classes.actionBar}>
 				  <Cta theme={'primary'} shape={'full'}>
-					  Find out more
+					  Let's Check It Out
 				  </Cta>
 			  </div>
 		  </section>

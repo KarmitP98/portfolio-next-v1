@@ -9,7 +9,7 @@ const ServiceLanguage = ({title, subtitle, ctaURL, largeCards}: ServicesLanguage
 	
 	const style = {'--cards': largeCards.length} as React.CSSProperties;
 	return (
-	  <section className={'page'}>
+	  <section className={`page ${ctaURL && 'services'}`}>
 		  <div className={classes.contentPage}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>
@@ -18,7 +18,7 @@ const ServiceLanguage = ({title, subtitle, ctaURL, largeCards}: ServicesLanguage
 			  <div className={classes.contentCards}>
 				  <div className={`${classes.cards}`} style={style}>
 					  {
-						largeCards && largeCards.map((card, index) => <LargeCard key={card.title + index} {...card}/>)
+					    largeCards && largeCards.map((card, index) => <LargeCard key={card.title + index} {...card}/>)
 					  }
 				  </div>
 				  <div className={classes.actionBar}>
