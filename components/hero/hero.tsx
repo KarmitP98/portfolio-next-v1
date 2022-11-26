@@ -8,7 +8,7 @@ const Hero = (props: any) => {
 		  <section className={classes.contentPage}>
 			  <div className={classes.header}>
 				  <h2 className={classes.subtitle}>
-					  HI THERE 👋🏻 I'M
+					  HI THERE 👋🏻 I&apos;M
 				  </h2>
 				  <h1 className={classes.title}>
 					  Karmit Patel
@@ -25,7 +25,7 @@ const Hero = (props: any) => {
 			  </div>
 			  <div className={classes.actionBar}>
 				  <Cta theme={'primary'} shape={'full'}>
-					  Let's Check It Out
+					  Let&apos;s Check It Out
 				  </Cta>
 			  </div>
 		  </section>

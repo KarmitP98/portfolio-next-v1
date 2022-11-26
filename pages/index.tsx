@@ -140,6 +140,7 @@ const Home: NextPage = () => {
 		ctaURL: 'https://github.com/KarmitP98'
 	};
 	
+	
 	return (
 	  <div className={styles.container}>
 		  <Head>

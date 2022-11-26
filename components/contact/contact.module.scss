@@ -94,6 +94,29 @@
 	  }
 	}
   }
+
+  .toast {
+	font-weight: 500;
+	position: fixed;
+	right: 2em;
+	bottom: 2em;
+	width: fit-content;
+	max-width: 80%;
+	height: fit-content;
+	padding: 0.5em 1em;
+	transition: var(--transition-250-eio);
+	transform: scale(0);
+	transform-origin: bottom right;
+	opacity: 0;
+	color: var(--background);
+	border-radius: 0.25em;
+	background-color: var(--primary);
+
+	&.show {
+	  transform: scale(1);
+	  opacity: 1;
+	}
+  }
 }
 
 @media screen and (width > 768px) {

@@ -2,8 +2,53 @@ import classes from './contact.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
 import {CommonProps} from '../../models/common-props.model';
+import React, {FormEvent, useEffect, useRef, useState} from 'react';
+import firebase from 'firebase';
 
 const Contact = (props: CommonProps) => {
+	
+	const [showToast, setShowToast] = useState(false);
+	const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+	const emailRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+	const messageRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
+	const init: any = {};
+	const [firestore, setFirestore] = useState(init);
+	
+	useEffect(() => {
+		const firebaseConfig = {
+			apiKey: process.env.NEXT_PUBLIC_APIKEY,
+			authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+			projectId: process.env.NEXT_PUBLIC_PROJECTID,
+			storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+			messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+			appId: process.env.NEXT_PUBLIC_APPID,
+			measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
+		};
+		
+		const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(firebaseConfig);
+		setFirestore(app.firestore());
+	}, []);
+	
+	const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		
+		const email = emailRef.current.value;
+		const name = nameRef.current.value;
+		const message = messageRef.current.value;
+		if (name && message && email) {
+			await firestore.collection('messages').add({email, name, message});
+			emailRef.current.value = '';
+			nameRef.current.value = '';
+			messageRef.current.value = '';
+			setShowToast(true);
+			setTimeout(() => {
+				setShowToast(false);
+			}, 5000);
+		}
+		
+	};
+	
+	
 	return (
 	  <section className={'page'} id={props.id}>
 		  <article className={classes.contentPage}>
@@ -41,13 +86,15 @@ const Contact = (props: CommonProps) => {
 				  </ul>
 			  </div>
 			  <div className={classes.contentForm}>
-				  <form>
+				  <form onSubmit={sendMessage}>
 					  <h1>Get in Touch</h1>
-					  <input type='text' name='fullname' id='fullname' placeholder={'What do I call you?'}/>
-					  <input type='email' name='email' id='email' placeholder={'Maybe an email...'}/>
-					  <textarea placeholder={'Tell me your story and how I can make it better'}/>
+					  <input
+					    type='text' name='fullname' id='fullname' placeholder={'What do I call you?'} ref={nameRef}
+					  />
+					  <input type='email' name='email' id='email' placeholder={'Maybe an email...'} ref={emailRef}/>
+					  <textarea placeholder={'Tell me your story and how I can make it better'} ref={messageRef}/>
 					  <div className={classes.actionBar}>
-						  <Cta theme={'primary'} shape={'full'}>
+						  <Cta theme={'primary'} shape={'full'} type={'submit'}>
 							  Shoot Me A Message
 							  <span className='material-icons-round'>
 								  send
@@ -55,6 +102,9 @@ const Contact = (props: CommonProps) => {
 						  </Cta>
 					  </div>
 				  </form>
+			  </div>
+			  <div className={`${classes.toast} ${showToast ? classes.show : ''}`}>
+				  Your message has been delivered!
 			  </div>
 		  </article>
 	  </section>
