@@ -37,6 +37,16 @@ const Home: NextPage = () => {
 		}
 	];
 	
+	const aboutMe: ProjectPropsModel = {
+		title: 'Who am I?',
+		imageSide: 'start',
+		imageLoad: 'right',
+		imageURL: '/assets/profile-pic.png',
+		projectURL: 'https://www.linkedin.com/in/karmitpatel/',
+		description: 'I am a Frontend Web Developer who also likes to design UI for web and mobile applications. I work on designing eye pleasing minimalistic designs using geometric, isometric shapes and micro-animations. I aspire to become a full stack developer and develop high class web applications for the world to enjoy!',
+		ctaLabel: 'Find Out More'
+	};
+	
 	const languages: ServicesLanguagesCommonPropsModel = {
 		title: 'Languages I work with',
 		subtitle: 'YOU KNOW... THE BIG 3!',
@@ -98,6 +108,7 @@ const Home: NextPage = () => {
 		  <main className={styles.main}>
 			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
 			  <Hero/>
+			  <Project {...aboutMe}/>
 			  <ServiceLanguage {...languages}/>
 			  <ServiceLanguage {...services}/>
 			  {

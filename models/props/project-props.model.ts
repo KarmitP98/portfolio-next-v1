@@ -6,4 +6,5 @@ export interface ProjectPropsModel {
 	imageLoad: 'up' | 'down' | 'left' | 'right';
 	imageURL?: string;
 	imageName?: string;
+	ctaLabel?: string;
 }
