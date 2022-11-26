@@ -1,10 +1,11 @@
 .footer {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  flex-flow: row nowrap;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 2em 5%;
+  padding: 2em clamp(5%, 15%, 20%);
   background-color: var(--dark);
 
   .label {
@@ -15,6 +16,17 @@
 @media screen and (min-width: 1130px) {
   .footer {
     padding: 4em 15%;
+
+    .label {
+      display: block !important;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .footer {
+    flex-flow: column nowrap;
+    gap: 1em;
 
     .label {
       display: block !important;

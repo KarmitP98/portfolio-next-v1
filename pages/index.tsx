@@ -11,6 +11,7 @@ import Strip from '../components/strip/strip';
 import Cta from '../components/cta/cta';
 import Image from 'next/image';
 import Footer from '../components/footer/footer';
+import Hero from '../components/hero/hero';
 
 const Home: NextPage = () => {
 	
@@ -96,6 +97,7 @@ const Home: NextPage = () => {
 		
 		  <main className={styles.main}>
 			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
+			  <Hero/>
 			  <ServiceLanguage {...languages}/>
 			  <ServiceLanguage {...services}/>
 			  {
