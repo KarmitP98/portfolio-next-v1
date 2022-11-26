@@ -17,9 +17,9 @@ const Project = ({
                  }: ProjectPropsModel) => {
 	
 	const getImageURL = (): string => imageName ? `/assets/${imageName}` : imageURL || '';
-	
+	console.log(name);
 	return (
-	  <section className={`${classes.page} ${classes.about}`}>
+	  <section className={`${classes.page} ${name ? classes.about : ''}`}>
 		  <div className={`${classes.contentPage} ${classes[imageSide]}`}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>
