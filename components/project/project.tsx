@@ -13,13 +13,13 @@ const Project = ({
 	                 imageSide,
 	                 imageLoad,
 	                 ctaLabel,
-	                 name
+	                 name,
+	                 id
                  }: ProjectPropsModel) => {
 	
 	const getImageURL = (): string => imageName ? `/assets/${imageName}` : imageURL || '';
-	console.log(name);
 	return (
-	  <section className={`${classes.page} ${name ? classes.about : ''}`}>
+	  <section className={`${classes.page} ${name ? classes.about : ''}`} id={id}>
 		  <div className={`${classes.contentPage} ${classes[imageSide]}`}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>

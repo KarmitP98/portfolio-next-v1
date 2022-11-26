@@ -1,10 +1,11 @@
 import classes from './contact.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
+import {CommonProps} from '../../models/common-props.model';
 
-const Contact = () => {
+const Contact = (props: CommonProps) => {
 	return (
-	  <section className={'page'}>
+	  <section className={'page'} id={props.id}>
 		  <article className={classes.contentPage}>
 			  <div className={classes.contentInfo}>
 				  <ul>

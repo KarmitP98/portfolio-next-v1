@@ -5,4 +5,6 @@ export interface ServicesLanguagesCommonPropsModel {
 	subtitle: string;
 	largeCards: LargeCard[];
 	ctaURL?: string;
+	
+	[x: string]: any;
 }

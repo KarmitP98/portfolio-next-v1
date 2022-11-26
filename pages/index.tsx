@@ -2,7 +2,7 @@ import type {NextPage} from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 import Navbar from '../components/navbar/navbar';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ProjectPropsModel} from '../models/props/project-props.model';
 import Project from '../components/project/project';
 import {ServicesLanguagesCommonPropsModel} from '../models/props/services-languages-common-props.model';
@@ -19,6 +19,46 @@ const Home: NextPage = () => {
 	const [activeTab, setActiveTab] = useState('home');
 	const [opened, setOpened] = useState(false);
 	
+	const navigateTo = (id: string) => {
+		const page = getElement(id);
+		let time = 0;
+		if (opened) {
+			setOpened(false);
+			time = 250;
+		}
+		setTimeout(() => {
+			page?.scrollIntoView({behavior: 'smooth', block: 'start'});
+		}, time);
+	};
+	useEffect(() => {
+		
+		window.onscroll = () => {
+			const scrollY = window.scrollY;
+			
+			const pages: { id: string, box: DOMRect | undefined }[] = [
+				{
+					id: 'contact', box: getElement('contact')?.getBoundingClientRect()
+				},
+				{
+					id: 'projects', box: getElement('projects')?.getBoundingClientRect()
+				},
+				{
+					id: 'services', box: getElement('services')?.getBoundingClientRect()
+				},
+				{
+					id: 'about', box: getElement('about')?.getBoundingClientRect()
+				}, {
+					id: 'home', box: getElement('home')?.getBoundingClientRect()
+				}
+			];
+			
+			const activeTab = pages.find(page => -(page!.box!.top) >= 0)?.id || 'home';
+			setActiveTab(activeTab);
+		};
+	});
+	
+	const getElement = (id: string) => document.getElementById(id);
+	
 	const projects: ProjectPropsModel[] = [
 		{
 			description: 'Stay connected with your friends and family with a modern, minimalist chat application. It allows sharing your memories with your loved ones with stories.',
@@ -26,7 +66,8 @@ const Home: NextPage = () => {
 			title: 'Snazzy Chat',
 			projectURL: 'https://github.com/KarmitP98/Snazzy-Chat',
 			imageLoad: 'down',
-			imageSide: 'end'
+			imageSide: 'end',
+			id: 'projects'
 		},
 		{
 			description: 'Check product inventories in real time and plan accordingly. Browse products from a plethora of stores and manage your shopping at the tip of your fingers.',
@@ -34,7 +75,8 @@ const Home: NextPage = () => {
 			title: 'Shoppers Land',
 			projectURL: 'https://smart-shoppers-2a1ab.web.app/',
 			imageLoad: 'right',
-			imageSide: 'start'
+			imageSide: 'start',
+			id: 'project2'
 		}
 	];
 	
@@ -107,11 +149,14 @@ const Home: NextPage = () => {
 		  </Head>
 		
 		  <main className={styles.main}>
-			  <Navbar active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}/>
-			  <Hero/>
-			  <Project {...aboutMe} name={'about'}/>
-			  <ServiceLanguage {...languages}/>
-			  <ServiceLanguage {...services}/>
+			  <Navbar
+			    active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}
+			    navigateTo={navigateTo}
+			  />
+			  <Hero id={'home'}/>
+			  <Project {...aboutMe} name={'about'} id={'about'}/>
+			  <ServiceLanguage {...languages} id={'services'}/>
+			  <ServiceLanguage {...services} id={'languages'}/>
 			  {
 				  projects.map((project, index) => <Project {...project} key={project.title + index}/>)
 			  }
@@ -121,7 +166,7 @@ const Home: NextPage = () => {
 					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
 				  </Cta>
 			  </Strip>
-			  <Contact/>
+			  <Contact id={'contact'}/>
 		  </main>
 		  <Footer/>
 	  </div>

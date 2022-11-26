@@ -4,7 +4,7 @@ import classes from './navbar.module.scss';
 import Cta from '../cta/cta';
 import NavLink from '../nav-link/nav-link';
 
-const Navbar = ({active, setActive, opened, setOpened, ...props}: NavbarModel) => {
+const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: NavbarModel) => {
 	
 	const tabs: { label: string, href: string }[] = [
 		{label: 'Home', href: 'home'},
@@ -21,7 +21,7 @@ const Navbar = ({active, setActive, opened, setOpened, ...props}: NavbarModel) =
 			  {
 				  tabs.map((tab, index) =>
 					<li key={index + tab.href}>
-						<NavLink active={active === tab.href} onClick={() => setActive(tab.href)}>
+						<NavLink active={active === tab.href} onClick={() => navigateTo(tab.href)}>
 							{tab.label}
 						</NavLink>
 					</li>)

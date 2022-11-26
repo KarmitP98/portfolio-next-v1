@@ -2,9 +2,9 @@ import classes from './hero.module.scss';
 import Cta from '../cta/cta';
 import Image from 'next/image';
 
-const Hero = () => {
+const Hero = (props: any) => {
 	return (
-	  <section className={'page hero'}>
+	  <section className={'page hero'} id={props.id}>
 		  <section className={classes.contentPage}>
 			  <div className={classes.header}>
 				  <h2 className={classes.subtitle}>

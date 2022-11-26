@@ -48,7 +48,7 @@
 
 	img {
 	  width: 100%;
-	  height: 100%;
+	  height: 80%;
 	  animation: load-opacity-down var(--transition-250-eio);
 	  object-fit: contain;
 
@@ -78,7 +78,7 @@
 	  grid-template-areas: 'image content';
 
 	  .contentImage {
-		padding: 0 5em;
+		padding: 2em 5em;
 	  }
 
 	}
