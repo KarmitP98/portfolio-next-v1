@@ -2,8 +2,9 @@ import classes from './contact.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
 import {CommonProps} from '../../models/common-props.model';
-import React, {FormEvent, useEffect, useRef, useState} from 'react';
-import firebase from 'firebase';
+import React, {FormEvent, useRef, useState} from 'react';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 const Contact = (props: CommonProps) => {
 	
@@ -11,23 +12,19 @@ const Contact = (props: CommonProps) => {
 	const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const emailRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const messageRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
-	const init: any = {};
-	const [firestore, setFirestore] = useState(init);
 	
-	useEffect(() => {
-		const firebaseConfig = {
-			apiKey: process.env.NEXT_PUBLIC_APIKEY,
-			authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
-			projectId: process.env.NEXT_PUBLIC_PROJECTID,
-			storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
-			messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
-			appId: process.env.NEXT_PUBLIC_APPID,
-			measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
-		};
-		
-		const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(firebaseConfig);
-		setFirestore(app.firestore());
-	}, []);
+	const firebaseConfig = {
+		apiKey: process.env.NEXT_PUBLIC_APIKEY,
+		authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+		projectId: process.env.NEXT_PUBLIC_PROJECTID,
+		storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+		messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+		appId: process.env.NEXT_PUBLIC_APPID,
+		measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
+	};
+	
+	const app = firebase.initializeApp(firebaseConfig);
+	const firestore = app.firestore();
 	
 	const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
