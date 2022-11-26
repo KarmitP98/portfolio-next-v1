@@ -10,6 +10,7 @@ import ServiceLanguage from '../components/servicelanguage/servicelanguage';
 import Strip from '../components/strip/strip';
 import Cta from '../components/cta/cta';
 import Image from 'next/image';
+import Footer from '../components/footer/footer';
 
 const Home: NextPage = () => {
 	
@@ -107,10 +108,7 @@ const Home: NextPage = () => {
 				  </Cta>
 			  </Strip>
 		  </main>
-		  
-		  <footer className={styles.footer}>
-		  
-		  </footer>
+		  <Footer/>
 	  </div>
 	);
 };

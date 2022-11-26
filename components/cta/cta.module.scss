@@ -49,11 +49,11 @@
   }
 
   &.secondary {
-	color: var(--primary);
-	background-color: var(--background);
+	color: var(--white);
+	background-color: var(--dark);
 
 	&:hover {
-	  background-color: var(--dark);
+	  background-color: var(--background);
 	}
   }
 }
