@@ -198,6 +198,7 @@ const Home: NextPage = () => {
 				  </Cta>
 			  </Strip>
 			  <Contact id={'contact'} loaded={isPageLoaded(7)}/>
+			  <div className={styles.curtains}></div>
 		  </main>
 		  <Footer/>
 	  </div>

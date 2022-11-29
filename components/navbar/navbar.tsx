@@ -16,15 +16,15 @@ const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: Na
 	
 	return (
 	  <nav className={classes.nav}>
-		  <Logo onClick={() => setActive('home')}/>
+		  <Logo onClick={() => navigateTo('home')}/>
 		  <ul className={`${classes.links} ${opened ? classes.active : ''}`}>
 			  {
 				  tabs.map((tab, index) =>
-					<li key={index + tab.href}>
-						<NavLink active={active === tab.href} onClick={() => navigateTo(tab.href)}>
-							{tab.label}
-						</NavLink>
-					</li>)
+				    <li key={index + tab.href}>
+					    <NavLink active={active === tab.href} onClick={() => navigateTo(tab.href)}>
+						    {tab.label}
+					    </NavLink>
+				    </li>)
 			  }
 		  </ul>
 		  <div className={classes.menuButton} onClick={() => setOpened(prevState => (!prevState))}>

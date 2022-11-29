@@ -2,3 +2,45 @@
   width: 100%;
   height: clamp(100vh, 100%, 100%);
 }
+
+.curtains {
+  position: fixed;
+  z-index: 1000;
+
+  &:after, &:before {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    content: '';
+    background-color: var(--dark);
+  }
+
+  &:before {
+    left: -50%;
+    animation: load-left var(--transition-500-eio);
+  }
+
+  &:after {
+    right: -50%;
+    animation: load-right var(--transition-500-eio);
+  }
+}
+
+@keyframes load-left {
+  0%, 20% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes load-right {
+  0%, 20% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

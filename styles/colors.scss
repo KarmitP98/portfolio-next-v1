@@ -27,8 +27,8 @@
   --h-1: 0.833em;
 
 
-  --transition-250-eio: 250ms ease-in-out;
-  --transition-500-eio: 500ms ease-in-out;
+  --transition-250-eio: 250ms cubic-bezier(.16, .02, .07, .99);
+  --transition-500-eio: 500ms cubic-bezier(.16, .02, .07, .99);
 
   --box-shadow-primary-0-2-12-10: 0 2px 12px rgba(var(--primary), .1);
   --box-shadow-primary-0-4-12-10: 0 4px 12px rgba(var(--primary), .1);

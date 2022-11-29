@@ -55,6 +55,19 @@
   filter: grayscale(100);
 }
 
+@media screen and (width < 550px) {
+  .contentPage {
+	padding: 0 15% 50%;
+  }
+
+  .portrait {
+	align-self: center;
+	width: 400px;
+	height: 400px;
+  }
+}
+
+
 @media screen and (min-width: 1130px) {
   .contentPage {
 	padding: 0 15%;
@@ -79,9 +92,9 @@
 
   .portrait {
 	right: 10%;
-	bottom: 10%;
-	width: 600px;
-	height: 600px;
+	bottom: 15%;
+	width: 650px;
+	height: 650px;
 	filter: grayscale(0);
   }
 }
