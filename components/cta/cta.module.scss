@@ -57,3 +57,9 @@
 	}
   }
 }
+
+@media screen and (width < 768px) {
+  .cta {
+	font-size: small;
+  }
+}

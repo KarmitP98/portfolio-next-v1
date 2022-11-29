@@ -31,8 +31,12 @@
 	grid-area: content;
 
 	h1 {
-	  font-size: xxx-large;
+	  font-size: x-large;
 	  font-weight: bolder;
+	}
+
+	p {
+	  font-size: small;
 	}
   }
 
@@ -87,6 +91,14 @@
 	  align-items: flex-start;
 	  text-align: left;
 	  gap: 2em;
+
+	  h1 {
+		font-size: xxx-large;
+	  }
+
+	  p {
+		font-size: medium;
+	  }
 	}
 
 	.contentImage {

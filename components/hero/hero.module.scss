@@ -10,13 +10,14 @@
 
   .header {
 	.subtitle {
+	  font-size: 1em;
 	  font-weight: 200;
 	  letter-spacing: 0.25em;
 	  text-transform: capitalize;
 	}
 
 	.title {
-	  font-size: xxx-large;
+	  font-size: x-large;
 	  font-weight: 600;
 	}
   }
@@ -25,6 +26,7 @@
 	width: clamp(200px, 100%, 400px);
 
 	.title {
+	  font-size: large;
 	  font-weight: 200;
 	  margin-bottom: 0.5em;
 	  letter-spacing: 1px;
@@ -32,9 +34,6 @@
 	  color: var(--primary);
 	}
 
-	p {
-	  font-size: large;
-	}
   }
 
   .actionBar {
@@ -59,10 +58,27 @@
 @media screen and (min-width: 1130px) {
   .contentPage {
 	padding: 0 15%;
+
+	.header {
+	  .subtitle {
+		font-size: large;
+	  }
+
+	  .title {
+		font-size: xxx-large;
+	  }
+	}
+
+	.content {
+
+	  .title {
+		font-size: x-large;
+	  }
+	}
   }
 
   .portrait {
-	right: 20%;
+	right: 10%;
 	bottom: 10%;
 	width: 600px;
 	height: 600px;
