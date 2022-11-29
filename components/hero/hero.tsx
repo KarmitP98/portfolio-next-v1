@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Hero = (props: any) => {
 	return (
-	  <section className={'page hero'} id={props.id}>
+	  <section className={`page hero ${props.loaded ? 'loaded' : ''}`} id={props.id}>
 		  <section className={classes.contentPage}>
 			  <div className={classes.header}>
 				  <h2 className={classes.subtitle}>
@@ -24,9 +24,14 @@ const Hero = (props: any) => {
 				  </p>
 			  </div>
 			  <div className={classes.actionBar}>
-				  <Cta theme={'primary'} shape={'full'}>
-					  Let&apos;s Check It Out
-				  </Cta>
+				  <a href='#about'>
+					  <Cta theme={'primary'} shape={'full'}>
+						  Let&apos;s Check It Out
+						  <span className='material-icons-round'>
+							  expand_more
+						  </span>
+					  </Cta>
+				  </a>
 			  </div>
 		  </section>
 		  <Image

@@ -8,13 +8,25 @@
   min-height: 100vh;
   padding-top: 5vh;
 
+  * {
+	transition: var(--transition-250-eio);
+	transform: translateY(50px);
+	opacity: 0;
+  }
+
+  &.loaded {
+	* { transform: translateY(0);
+	  opacity: 1;
+	}
+  }
+
   &.hero {
-    background: url('../public/assets/waves/hero-wave.svg') no-repeat 100% 100%;
-    background-size: cover;
+	background: url('../public/assets/waves/hero-wave.svg') no-repeat 100% 100%;
+	background-size: cover;
   }
 
   &.services {
-    background: url('../public/assets/waves/projects-wave.svg') no-repeat 100% 100%;
-    background-size: cover;
+	background: url('../public/assets/waves/projects-wave.svg') no-repeat 100% 100%;
+	background-size: cover;
   }
 }

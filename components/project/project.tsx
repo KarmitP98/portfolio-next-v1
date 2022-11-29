@@ -14,30 +14,23 @@ const Project = ({
 	                 imageLoad,
 	                 ctaLabel,
 	                 name,
-	                 id
+	                 id,
+	                 loaded
                  }: ProjectPropsModel) => {
 	
 	const getImageURL = (): string => imageName ? `/assets/${imageName}` : imageURL || '';
 	return (
-	  <section className={`${classes.page} ${name ? classes.about : ''}`} id={id}>
+	  <section className={`${classes.page} ${name ? classes.about : ''} ${loaded ? classes.loaded : ''}`} id={id}>
 		  <div className={`${classes.contentPage} ${classes[imageSide]}`}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>
 				  <p>{description}</p>
 				  <div className='action-bar'>
 					  <a href={projectURL} target={'_blank'} rel='noreferrer'>
-						  <Cta theme={'primary'} shape={'full'}>
-							  {
-								  ctaLabel ?
-									<>{ctaLabel}</> :
-									<>
-										Check it out
-										<span className='material-icons-round'>
-											open_in_new
-										</span>
-									</>
-							  }
-						  
+						  <Cta theme={'primary'} shape={'full'}>{ctaLabel || 'Check it out'}
+							  <span className='material-icons-round'>
+								  open_in_new
+							  </span>
 						  </Cta>
 					  </a>
 				  </div>

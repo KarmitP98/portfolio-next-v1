@@ -47,7 +47,7 @@ const Contact = (props: CommonProps) => {
 	
 	
 	return (
-	  <section className={'page'} id={props.id}>
+	  <section className={`page ${props.loaded ? 'loaded' : ''}`} id={props.id}>
 		  <article className={classes.contentPage}>
 			  <div className={classes.contentInfo}>
 				  <ul>
@@ -56,7 +56,7 @@ const Contact = (props: CommonProps) => {
 							  <Image src={'/assets/svg/mail.svg'} alt={'Mail'} width={32} height={32}/>
 						  </div>
 						  <a
-							className={classes.text} href='mailto:karmit199@gmail.com' target='_blank' rel='noreferrer'
+						    className={classes.text} href='mailto:karmit199@gmail.com' target='_blank' rel='noreferrer'
 						  >
 							  karmit199@gmail.com
 						  </a>

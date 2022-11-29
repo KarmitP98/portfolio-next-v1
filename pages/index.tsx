@@ -18,6 +18,8 @@ const Home: NextPage = () => {
 	
 	const [activeTab, setActiveTab] = useState('home');
 	const [opened, setOpened] = useState(false);
+	const [scroll, setScroll] = useState(0);
+	const [innerHeight, setInnerHeight] = useState(0);
 	
 	const navigateTo = (id: string) => {
 		const page = getElement(id);
@@ -31,9 +33,10 @@ const Home: NextPage = () => {
 		}, time);
 	};
 	useEffect(() => {
+		setInnerHeight(window.innerHeight);
 		
 		window.onscroll = () => {
-			const scrollY = window.scrollY;
+			setScroll(window.scrollY);
 			
 			const pages: { id: string, box: DOMRect | undefined }[] = [
 				{
@@ -52,12 +55,16 @@ const Home: NextPage = () => {
 				}
 			];
 			
-			const activeTab = pages.find(page => -(page!.box!.top) >= 0)?.id || 'home';
+			const activeTab = pages.find(page => -(page!.box!.top) >= (-innerHeight * 0.45))?.id || 'home';
 			setActiveTab(activeTab);
 		};
-	});
+	}, [innerHeight]);
 	
 	const getElement = (id: string) => document.getElementById(id);
+	
+	const isPageLoaded = (pageNumber: number) => {
+		return scroll >= innerHeight * ((pageNumber - 1) - 0.45) && scroll <= innerHeight * (pageNumber + 0.1);
+	};
 	
 	const projects: ProjectPropsModel[] = [
 		{
@@ -67,7 +74,8 @@ const Home: NextPage = () => {
 			projectURL: 'https://github.com/KarmitP98/Snazzy-Chat',
 			imageLoad: 'down',
 			imageSide: 'end',
-			id: 'projects'
+			id: 'projects',
+			loaded: isPageLoaded(5)
 		},
 		{
 			description: 'Check product inventories in real time and plan accordingly. Browse products from a plethora of stores and manage your shopping at the tip of your fingers.',
@@ -76,7 +84,8 @@ const Home: NextPage = () => {
 			projectURL: 'https://smart-shoppers-2a1ab.web.app/',
 			imageLoad: 'right',
 			imageSide: 'start',
-			id: 'project2'
+			id: 'project2',
+			loaded: isPageLoaded(6)
 		}
 	];
 	
@@ -87,7 +96,8 @@ const Home: NextPage = () => {
 		imageURL: '/assets/profile-pic.png',
 		projectURL: 'https://www.linkedin.com/in/karmitpatel/',
 		description: 'I am a Frontend Web Developer who also likes to design UI for web and mobile applications. I work on designing eye pleasing minimalistic designs using geometric, isometric shapes and micro-animations. I aspire to become a full stack developer and develop high class web applications for the world to enjoy!',
-		ctaLabel: 'Find Out More'
+		ctaLabel: 'Find Out More',
+		loaded: isPageLoaded(2)
 	};
 	
 	const languages: ServicesLanguagesCommonPropsModel = {
@@ -115,7 +125,8 @@ const Home: NextPage = () => {
 				show: true,
 				icon: '/assets/svg/logo-vue.svg'
 			}
-		]
+		],
+		loaded: isPageLoaded(3)
 	};
 	
 	const services: ServicesLanguagesCommonPropsModel = {
@@ -137,7 +148,8 @@ const Home: NextPage = () => {
 				icon: '/assets/svg/git-branch.svg'
 			}
 		],
-		ctaURL: 'https://github.com/KarmitP98'
+		ctaURL: 'https://github.com/KarmitP98',
+		loaded: isPageLoaded(4)
 	};
 	
 	
@@ -172,7 +184,7 @@ const Home: NextPage = () => {
 			    active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}
 			    navigateTo={navigateTo}
 			  />
-			  <Hero id={'home'}/>
+			  <Hero id={'home'} loaded={isPageLoaded(1)}/>
 			  <Project {...aboutMe} name={'about'} id={'about'}/>
 			  <ServiceLanguage {...languages} id={'services'}/>
 			  <ServiceLanguage {...services} id={'languages'}/>
@@ -185,7 +197,7 @@ const Home: NextPage = () => {
 					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
 				  </Cta>
 			  </Strip>
-			  <Contact id={'contact'}/>
+			  <Contact id={'contact'} loaded={isPageLoaded(7)}/>
 		  </main>
 		  <Footer/>
 	  </div>

@@ -5,11 +5,11 @@ import LargeCard from '../large-card/large-card';
 import Tag from '../tag/tag';
 import React from 'react';
 
-const ServiceLanguage = ({title, subtitle, ctaURL, largeCards, id}: ServicesLanguagesCommonPropsModel) => {
+const ServiceLanguage = ({title, subtitle, ctaURL, largeCards, id, loaded}: ServicesLanguagesCommonPropsModel) => {
 	
 	const style = {'--cards': largeCards.length} as React.CSSProperties;
 	return (
-	  <section className={`page ${ctaURL && 'services'}`} id={id}>
+	  <section className={`page ${ctaURL && 'services'} ${loaded ? 'loaded' : ''}`} id={id}>
 		  <div className={classes.contentPage}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>
