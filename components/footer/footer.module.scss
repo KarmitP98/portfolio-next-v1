@@ -9,27 +9,27 @@
   background-color: var(--dark);
 
   .label {
-    display: none !important;
+	display: none !important;
   }
 }
 
 @media screen and (min-width: 1130px) {
   .footer {
-    padding: 2em 15%;
+	padding: 2em 15%;
 
-    .label {
-      display: block !important;
-    }
+	.label {
+	  display: block !important;
+	}
   }
 }
 
 @media screen and (max-width: 450px) {
   .footer {
-    flex-flow: column nowrap;
-    gap: 1em;
+	flex-flow: column nowrap;
+	gap: 1em;
 
-    .label {
-      display: block !important;
-    }
+	.label {
+	  display: block !important;
+	}
   }
 }

@@ -2,7 +2,7 @@ import type {NextPage} from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 import Navbar from '../components/navbar/navbar';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ProjectPropsModel} from '../models/props/project-props.model';
 import Project from '../components/project/project';
 import {ServicesLanguagesCommonPropsModel} from '../models/props/services-languages-common-props.model';
@@ -20,6 +20,7 @@ const Home: NextPage = () => {
 	const [opened, setOpened] = useState(false);
 	const [scroll, setScroll] = useState(0);
 	const [innerHeight, setInnerHeight] = useState(0);
+	const [toast, setToast] = useState({success: false, message: ''});
 	
 	const navigateTo = (id: string) => {
 		const page = getElement(id);
@@ -197,10 +198,23 @@ const Home: NextPage = () => {
 					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
 				  </Cta>
 			  </Strip>
-			  <Contact id={'contact'} loaded={isPageLoaded(7)}/>
+			  <Contact id={'contact'} loaded={isPageLoaded(7)} setToast={setToast}/>
 			  <div className={styles.curtains}></div>
 		  </main>
 		  <Footer/>
+		  <div className={`${styles.toast} ${toast && toast.message ? styles.show : ''}`}>
+			  {
+			    toast && toast.message.length &&
+				  <>
+					<h3>
+					    {toast.success ? 'Success' : 'Error'}
+					</h3>
+					<p>
+					    {toast.message}
+					</p>
+				  </>
+			  }
+		  </div>
 	  </div>
 	);
 };

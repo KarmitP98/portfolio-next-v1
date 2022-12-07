@@ -2,29 +2,15 @@ import classes from './contact.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
 import {CommonProps} from '../../models/common-props.model';
-import React, {FormEvent, useRef, useState} from 'react';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
+import React, {FormEvent, useRef} from 'react';
+import {addMessage} from '../../firebase/store';
 
 const Contact = (props: CommonProps) => {
 	
-	const [showToast, setShowToast] = useState(false);
 	const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const emailRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const messageRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
 	
-	const firebaseConfig = {
-		apiKey: process.env.NEXT_PUBLIC_APIKEY,
-		authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
-		projectId: process.env.NEXT_PUBLIC_PROJECTID,
-		storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
-		messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
-		appId: process.env.NEXT_PUBLIC_APPID,
-		measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
-	};
-	
-	const app = firebase.initializeApp(firebaseConfig);
-	const firestore = app.firestore();
 	
 	const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -33,16 +19,19 @@ const Contact = (props: CommonProps) => {
 		const name = nameRef.current.value;
 		const message = messageRef.current.value;
 		if (name && message && email) {
-			await firestore.collection('messages').add({email, name, message});
-			emailRef.current.value = '';
-			nameRef.current.value = '';
-			messageRef.current.value = '';
-			setShowToast(true);
+			const response = await addMessage({name, email, message});
+			clearForm();
+			props.setToast(response);
 			setTimeout(() => {
-				setShowToast(false);
+				props.setToast(undefined);
 			}, 5000);
 		}
-		
+	};
+	
+	const clearForm = () => {
+		emailRef.current.value = '';
+		nameRef.current.value = '';
+		messageRef.current.value = '';
 	};
 	
 	
@@ -56,7 +45,7 @@ const Contact = (props: CommonProps) => {
 							  <Image src={'/assets/svg/mail.svg'} alt={'Mail'} width={32} height={32}/>
 						  </div>
 						  <a
-						    className={classes.text} href='mailto:karmit199@gmail.com' target='_blank' rel='noreferrer'
+							className={classes.text} href='mailto:karmit199@gmail.com' target='_blank' rel='noreferrer'
 						  >
 							  karmit199@gmail.com
 						  </a>
@@ -99,9 +88,6 @@ const Contact = (props: CommonProps) => {
 						  </Cta>
 					  </div>
 				  </form>
-			  </div>
-			  <div className={`${classes.toast} ${showToast ? classes.show : ''}`}>
-				  Your message has been delivered!
 			  </div>
 		  </article>
 	  </section>
