@@ -35,7 +35,7 @@ const Hero = (props: any) => {
 			  </div>
 		  </section>
 		  <Image
-			src={'/assets/3d-profile.png'} alt={'3D-Profile'} className={classes.portrait} width={1000} height={1000}
+		    src={'/assets/3d-profile.png'} alt={'3D-Profile'} className={classes.portrait} width={700} height={700}
 		  />
 	  </section>
 	);
