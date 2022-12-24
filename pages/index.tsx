@@ -64,7 +64,8 @@ const Home: NextPage = () => {
 	const getElement = (id: string) => document.getElementById(id);
 	
 	const isPageLoaded = (pageNumber: number) => {
-		return scroll >= innerHeight * ((pageNumber - 1) - 0.45) && scroll <= innerHeight * (pageNumber + 0.1);
+		return scroll >= innerHeight * ((pageNumber - 1) - 0.45);
+		// return scroll >= innerHeight * ((pageNumber - 1) - 0.45) && scroll <= innerHeight * (pageNumber + 0.1);
 	};
 	
 	const projects: ProjectPropsModel[] = [
