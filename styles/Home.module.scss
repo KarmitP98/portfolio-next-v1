@@ -58,6 +58,19 @@
   }
 }
 
+@media screen and (width < 500px) {
+  .toast {
+	right: 50%;
+	width: 100%;
+	max-width: 90%;
+	transform: scale(1) translateY(50px) translateX(50%);
+
+	&.show {
+	  transform: translateY(0) translateX(50%);
+	}
+  }
+}
+
 
 @keyframes load-left {
   0%, 20% {
