@@ -30,7 +30,7 @@ exports.sendEmail = functions.firestore
 		  message: undefined
 	  };
 	  
-	  const createTime: Timestamp = change.after.createTime;
+	  const createTime: Timestamp = change.after.createTime as Timestamp;
 	  const createTimeDate: Date = createTime.toDate();
 	  
 	  if (email && name && message) {
