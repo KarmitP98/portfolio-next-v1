@@ -185,7 +185,7 @@ const Home: NextPage = () => {
 			    active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}
 			    navigateTo={navigateTo}
 			  />
-			  <Hero id={'home'} loaded={isPageLoaded(1)}/>
+			  <Hero id={'home'} loaded={true}/>
 			  <Project {...aboutMe} name={'about'} id={'about'}/>
 			  <ServiceLanguage {...languages} id={'services'}/>
 			  <ServiceLanguage {...services} id={'languages'}/>
@@ -198,7 +198,7 @@ const Home: NextPage = () => {
 					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
 				  </Cta>
 			  </Strip>
-			  <Contact id={'contact'} loaded={isPageLoaded(7)} setToast={setToast}/>
+			  <Contact id={'contact'} loaded={true} setToast={setToast}/>
 			  <div className={styles.curtains}></div>
 		  </main>
 		  <Footer/>
