@@ -21,6 +21,7 @@ const Home: NextPage = () => {
 	const [scroll, setScroll] = useState(0);
 	const [innerHeight, setInnerHeight] = useState(0);
 	const [toast, setToast] = useState({success: false, message: ''});
+	const [curtains, setCurtains] = useState(false);
 	
 	const navigateTo = (id: string) => {
 		const page = getElement(id);
@@ -33,8 +34,17 @@ const Home: NextPage = () => {
 			page?.scrollIntoView({behavior: 'smooth', block: 'start'});
 		}, time);
 	};
+	
+	useEffect(() => {
+		setTimeout(() => {
+			setCurtains(true);
+		}, 2_500);
+	}, []);
+	
+	
 	useEffect(() => {
 		setInnerHeight(window.innerHeight);
+		setScroll(window.scrollY);
 		
 		window.onscroll = () => {
 			setScroll(window.scrollY);
@@ -65,7 +75,6 @@ const Home: NextPage = () => {
 	
 	const isPageLoaded = (pageNumber: number) => {
 		return scroll >= innerHeight * ((pageNumber - 1) - 0.45);
-		// return scroll >= innerHeight * ((pageNumber - 1) - 0.45) && scroll <= innerHeight * (pageNumber + 0.1);
 	};
 	
 	const projects: ProjectPropsModel[] = [
@@ -200,7 +209,17 @@ const Home: NextPage = () => {
 				  </Cta>
 			  </Strip>
 			  <Contact id={'contact'} loaded={true} setToast={setToast}/>
-			  <div className={styles.curtains}></div>
+			  <div className={`${styles.curtains} ${curtains ? styles.open : ''}`}>
+				  <p className={styles.message}>Loading website...</p>
+				  <div className={styles.cube}>
+					  <div></div>
+					  <div></div>
+					  <div></div>
+					  <div></div>
+					  <div></div>
+					  <div></div>
+				  </div>
+			  </div>
 		  </main>
 		  <Footer/>
 		  <div className={`${styles.toast} ${toast && toast.message ? styles.show : ''}`}>

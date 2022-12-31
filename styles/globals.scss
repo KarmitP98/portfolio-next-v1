@@ -22,12 +22,11 @@ html, body {
   scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-	color-scheme: dark;
-  }
-  body {
-	color: white;
-	background: var(--background);
-  }
+html {
+  color-scheme: dark;
+}
+
+body {
+  color: white;
+  background: var(--background);
 }
