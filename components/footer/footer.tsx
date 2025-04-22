@@ -10,7 +10,7 @@ const Footer = () => {
 		{
 			label: 'Github',
 			url: 'https://github.com/KarmitP98',
-			iconName: 'Github'
+			iconName: 'Github-White'
 		},
 		{
 			label: 'LinkedIn',

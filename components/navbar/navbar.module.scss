@@ -11,10 +11,6 @@
   height: fit-content;
   padding: 0 5%;
   background-color: var(--dark);
-  
-  .light-theme & {
-	background-color: var(--primary);
-  }
 
   .links {
 	position: fixed;
@@ -31,9 +27,6 @@
 	transition: var(--transition-250-eio);
 	background-color: var(--dark);
 	
-	.light-theme & {
-	  background-color: var(--primary);
-	}
 	gap: 2em;
 
 	li button {
@@ -55,10 +48,6 @@
 	align-items: center;
 	gap: 1rem;
   }
-  
-  .themeToggle {
-	display: none;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -72,6 +61,7 @@
 	  left: auto;
 	  flex-flow: row nowrap;
 	  width: fit-content;
+	  background-color: transparent;
 	  gap: 0;
 
 	  li button {

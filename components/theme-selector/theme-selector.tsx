@@ -18,6 +18,7 @@ const ThemeSelector: React.FC = () => {
                 width={24}
                 height={24}
             />
+            <span className={classes.text}>{theme.toString().toUpperCase()}</span>
         </button>
     );
 };

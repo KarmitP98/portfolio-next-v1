@@ -33,9 +33,3 @@
 	}
   }
 }
-
-body:is(.light-theme) {
-  .footer {
-	background-color: var(--primary);
-  }
-}

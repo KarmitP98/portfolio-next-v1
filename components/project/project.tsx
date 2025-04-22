@@ -20,7 +20,7 @@ const Project = ({
 	
 	const getImageURL = (): string => imageName ? `/assets/${imageName}` : imageURL || '';
 	return (
-	  <section className={`${classes.page} ${name ? classes.about : ''} ${loaded ? classes.loaded : ''}`} id={id}>
+		<section className={`${classes.page} page ${name ? 'about' : ''} ${loaded ? classes.loaded : ''}`} id={id}>
 		  <div className={`${classes.contentPage} ${classes[imageSide]}`}>
 			  <div className={classes.contentInfo}>
 				  <h1>{title}</h1>

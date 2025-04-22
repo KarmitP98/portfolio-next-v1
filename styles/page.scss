@@ -41,6 +41,11 @@
       background: url('../public/assets/svg/dark/waves/projects-wave.svg') no-repeat 100% 100%;
       background-size: cover;
     }
+    
+    &.about {
+      background: url('../public/assets/svg/dark/waves/about-wave.svg') no-repeat 100% 100%;
+      background-size: cover;
+    }
   }
 }
 
@@ -54,6 +59,11 @@
     
     &.services {
       background: url('../public/assets/svg/light/waves/projects-wave.svg') no-repeat 100% 100%;
+      background-size: cover;
+    }
+    
+    &.about {
+      background: url('../public/assets/svg/light/waves/about-wave.svg') no-repeat 100% 100%;
       background-size: cover;
     }
   }

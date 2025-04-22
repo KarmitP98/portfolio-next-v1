@@ -16,10 +16,6 @@
   outline: none;
   background-color: transparent;
   gap: 0.5em;
-  
-  .light-theme & {
-	color: white;
-  }
 
   &:before {
 	position: absolute;

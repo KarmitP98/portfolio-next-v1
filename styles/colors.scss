@@ -13,12 +13,49 @@
   --accent-6: #a86555;
   --accent-7: white;
   --accent-8: var(--primary);
+  --accent-9: var(--dark);
   --shade-1: #2b2b2b;
   --shade-2: #454545;
   --shade-3: #5e5e5e;
   --shade-4: #787878;
   
   --primary-hover: rgba(255, 226, 64, 0.10);
+  
+  --transition-250-eio: all 250ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --transition-500-eio: 500ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --transition-1000-eio: 1s cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  
+  --box-shadow-primary-0-2-12-10: 0 2px 12px rgba(var(--primary), .1);
+  --box-shadow-primary-0-4-12-10: 0 4px 12px rgba(var(--primary), .1);
+  
+  --box-shadow-dark-0-2-12-10: 0 2px 12px rgba(#000, .1);
+  --box-shadow-dark-0-4-12-10: 0 4px 12px rgba(#000, .1);
+  
+  --mobile-min: 320px;
+  --mobile-max: 480px;
+  
+  --tablet-min: 481px;
+  --tablet-max: 768px;
+  
+  --laptop-min: 769px;
+  --laptop-max: 1367px;
+  
+  --desktop-min: 1367px;
+  --desktop-max: 2048px;
+  
+  --mobile: '(min-width: $mobile-min) and (max-width: $mobile-max)';
+  --tablet: '(min-width: $tablet-min) and (max-width: $tablet-max)';
+  --laptop: '(min-width: $laptop-min) and (max-width: $laptop-max)';
+  --desktop: '(min-width: $desktop-min) and (max-width: $desktop-max)';
+  
+  --h0: 47.8px;
+  --h1: 2.488em;
+  --h2: 2.074em;
+  --h3: 1.728em;
+  --h4: 1.44em;
+  --h5: 1.2em;
+  --h6: 1em;
+  --h-1: 0.833em;
 }
 
 // Light theme colors
@@ -46,43 +83,6 @@
 
 // Dark theme class for explicit styling
 .dark-theme {
-
-  --h0: 47.8px;
-  --h1: 2.488em;
-  --h2: 2.074em;
-  --h3: 1.728em;
-  --h4: 1.44em;
-  --h5: 1.2em;
-  --h6: 1em;
-  --h-1: 0.833em;
-
+  
   --primary-hover: rgba(255, 226, 64, 0.10);
-
-
-  --transition-250-eio: 250ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
-  --transition-500-eio: 500ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
-  --transition-1000-eio: 1s cubic-bezier(0.05, 0.7, 0.1, 1.0);
-
-  --box-shadow-primary-0-2-12-10: 0 2px 12px rgba(var(--primary), .1);
-  --box-shadow-primary-0-4-12-10: 0 4px 12px rgba(var(--primary), .1);
-
-  --box-shadow-dark-0-2-12-10: 0 2px 12px rgba(#000, .1);
-  --box-shadow-dark-0-4-12-10: 0 4px 12px rgba(#000, .1);
-
-  --mobile-min: 320px;
-  --mobile-max: 480px;
-
-  --tablet-min: 481px;
-  --tablet-max: 768px;
-
-  --laptop-min: 769px;
-  --laptop-max: 1367px;
-
-  --desktop-min: 1367px;
-  --desktop-max: 2048px;
-
-  --mobile: '(min-width: $mobile-min) and (max-width: $mobile-max)';
-  --tablet: '(min-width: $tablet-min) and (max-width: $tablet-max)';
-  --laptop: '(min-width: $laptop-min) and (max-width: $laptop-max)';
-  --desktop: '(min-width: $desktop-min) and (max-width: $desktop-max)';
 }

@@ -151,7 +151,7 @@ const Home: NextPage = () => {
 				show: true,
 				description: 'I develop feature rich web application, websites as well as E-Commerce Platform to solve your business needs.',
 				icon: `/assets/svg/${theme}/code.svg`,
-				theme: 'accent-8'
+				theme: 'accent-9'
 			},
 			{
 				title: 'UI / UX Designing',

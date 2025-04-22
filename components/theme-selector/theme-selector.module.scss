@@ -2,19 +2,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: var(--transition-250-eio);
-  border: none;
-  border-radius: 50%;
+  border: 1px solid var(--primary);
+  border-radius: 500rem;
   background: none;
+  gap: 8px;
   
   &:hover {
 	background-color: var(--primary-hover);
   }
   
   &:focus {
-	outline: none;
-	box-shadow: 0 0 0 2px var(--primary);
+    outline: 1px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  .text {
+    display: inherit;
+    color: var(--primary);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .themeSelector {
+    padding: 8px;
+    border-radius: 50%;
+    
+    .text {
+      display: none;
+    }
   }
 }
