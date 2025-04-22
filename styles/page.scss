@@ -21,12 +21,40 @@
   }
 
   &.hero {
-	background: url('../public/assets/waves/hero-wave.svg') no-repeat 100% 100%;
-	background-size: cover;
+    background-size: cover;
   }
-
+  
   &.services {
-	background: url('../public/assets/waves/projects-wave.svg') no-repeat 100% 100%;
-	background-size: cover;
+    background-size: cover;
+  }
+}
+
+// Dark theme wave backgrounds
+.dark-theme {
+  .page {
+    &.hero {
+      background: url('../public/assets/svg/dark/waves/hero-wave.svg') no-repeat 100% 100%;
+      background-size: cover;
+    }
+    
+    &.services {
+      background: url('../public/assets/svg/dark/waves/projects-wave.svg') no-repeat 100% 100%;
+      background-size: cover;
+    }
+  }
+}
+
+// Light theme wave backgrounds
+.light-theme {
+  .page {
+    &.hero {
+      background: url('../public/assets/svg/light/waves/hero-wave.svg') no-repeat 100% 100%;
+      background-size: cover;
+    }
+    
+    &.services {
+      background: url('../public/assets/svg/light/waves/projects-wave.svg') no-repeat 100% 100%;
+      background-size: cover;
+    }
   }
 }

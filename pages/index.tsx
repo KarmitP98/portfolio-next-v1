@@ -13,16 +13,18 @@ import Image from 'next/image';
 import Footer from '../components/footer/footer';
 import Hero from '../components/hero/hero';
 import Contact from '../components/contact/contact';
+import {useTheme} from '../context/ThemeContext';
 
 const Home: NextPage = () => {
-	
+	const {theme} = useTheme();
+
 	const [activeTab, setActiveTab] = useState('home');
 	const [opened, setOpened] = useState(false);
 	const [scroll, setScroll] = useState(0);
 	const [innerHeight, setInnerHeight] = useState(0);
 	const [toast, setToast] = useState({success: false, message: ''});
 	const [curtains, setCurtains] = useState(false);
-	
+
 	const navigateTo = (id: string) => {
 		const page = getElement(id);
 		let time = 0;
@@ -34,21 +36,21 @@ const Home: NextPage = () => {
 			page?.scrollIntoView({behavior: 'smooth', block: 'start'});
 		}, time);
 	};
-	
+
 	useEffect(() => {
 		setTimeout(() => {
 			setCurtains(true);
 		}, 2_500);
 	}, []);
-	
-	
+
+
 	useEffect(() => {
 		setInnerHeight(window.innerHeight);
 		setScroll(window.scrollY);
-		
+
 		window.onscroll = () => {
 			setScroll(window.scrollY);
-			
+
 			const pages: { id: string, box: DOMRect | undefined }[] = [
 				{
 					id: 'contact', box: getElement('contact')?.getBoundingClientRect()
@@ -65,18 +67,18 @@ const Home: NextPage = () => {
 					id: 'home', box: getElement('home')?.getBoundingClientRect()
 				}
 			];
-			
+
 			const activeTab = pages.find(page => -(page!.box!.top) >= (-innerHeight * 0.45))?.id || 'home';
 			setActiveTab(activeTab);
 		};
 	}, [innerHeight]);
-	
+
 	const getElement = (id: string) => document.getElementById(id);
-	
+
 	const isPageLoaded = (pageNumber: number) => {
 		return scroll >= innerHeight * ((pageNumber - 1) - 0.45);
 	};
-	
+
 	const projects: ProjectPropsModel[] = [
 		{
 			description: 'Stay connected with your friends and family with a modern, minimalist chat application. It allows sharing your memories with your loved ones with stories.',
@@ -99,7 +101,7 @@ const Home: NextPage = () => {
 			loaded: isPageLoaded(6)
 		}
 	];
-	
+
 	const aboutMe: ProjectPropsModel = {
 		title: 'Who am I?',
 		imageSide: 'start',
@@ -110,7 +112,7 @@ const Home: NextPage = () => {
 		ctaLabel: 'Find Out More',
 		loaded: isPageLoaded(2)
 	};
-	
+
 	const languages: ServicesLanguagesCommonPropsModel = {
 		title: 'Languages I work with',
 		subtitle: 'YOU KNOW... THE BIG 3!',
@@ -119,7 +121,7 @@ const Home: NextPage = () => {
 				title: 'Angular',
 				show: true,
 				description: 'I apply DRY principal and design reusable components to greatly reduce development time.',
-				icon: '/assets/svg/logo-angular.svg',
+				icon: `/assets/svg/${theme}/logo-angular.svg`,
 				theme: 'accent-4'
 			},
 			{
@@ -127,19 +129,19 @@ const Home: NextPage = () => {
 				description: 'I design and develop web applications using modern hook based architecture.',
 				theme: 'accent-5',
 				show: true,
-				icon: '/assets/svg/logo-react.svg'
+				icon: `/assets/svg/${theme}/logo-react.svg`
 			},
 			{
 				title: 'Vue',
 				description: 'I design and develop highly responsive web applications to get you up and running quickly.',
 				theme: 'accent-1',
 				show: true,
-				icon: '/assets/svg/logo-vue.svg'
+				icon: `/assets/svg/${theme}/logo-vue.svg`
 			}
 		],
 		loaded: isPageLoaded(3)
 	};
-	
+
 	const services: ServicesLanguagesCommonPropsModel = {
 		title: 'Services I Provide',
 		subtitle: 'DESIGN & DEVELOP',
@@ -148,7 +150,7 @@ const Home: NextPage = () => {
 				title: 'Frontend Development',
 				show: true,
 				description: 'I develop feature rich web application, websites as well as E-Commerce Platform to solve your business needs.',
-				icon: '/assets/svg/code.svg',
+				icon: `/assets/svg/${theme}/code.svg`,
 				theme: 'accent-8'
 			},
 			{
@@ -156,25 +158,25 @@ const Home: NextPage = () => {
 				description: 'I design eye pleasing and minimalistic Web Fronts that increase conversion rate and user interaction.',
 				theme: 'accent-5',
 				show: true,
-				icon: '/assets/svg/git-branch.svg'
+				icon: `/assets/svg/${theme}/git-branch.svg`
 			}
 		],
 		ctaURL: 'https://github.com/KarmitP98',
 		loaded: isPageLoaded(4)
 	};
-	
-	
+
+
 	return (
-	  <div className={styles.container}>
+		<div className={`${styles.container} ${theme}-theme`}>
 		  <Head>
 			  <link rel='icon' href='/favicon.ico'/>
-			
+
 			  <meta charSet='utf-8'/>
 			  <meta content='width=device-width, initial-scale=1' name='viewport'/>
-			  <meta content='#FFE240' name='theme-color'/>
+			  <meta content={theme === 'dark' ? '#FFE240' : '#4da6ff'} name='theme-color'/>
 			  <meta content='Personal portfolio website for Karmit Patel.' name='description'/>
 			  <link href='/assets/logo192.png' rel='apple-touch-icon'/>
-			
+
 			  <meta content='Karmit Patel Portfolio' property='og:title'/>
 			  <meta content='https://karmitp.com/' property='og:url'/>
 			  <meta
@@ -189,8 +191,8 @@ const Home: NextPage = () => {
 			  />
 			  <title>Karmit Patel - Frontend & UI/UX</title>
 		  </Head>
-		
-		  <main className={styles.main}>
+
+			<main className={styles.main}>
 			  <Navbar
 			    active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}
 			    navigateTo={navigateTo}
@@ -205,7 +207,7 @@ const Home: NextPage = () => {
 			  <Strip>
 				  <Cta theme={'secondary'} shape={'full'}>
 					  See More at
-					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
+					  <Image src={`/assets/svg/${theme}/Github.svg`} alt={'Github logo'} width={24} height={24}/>
 				  </Cta>
 			  </Strip>
 			  <Contact id={'contact'} loaded={true} setToast={setToast}/>

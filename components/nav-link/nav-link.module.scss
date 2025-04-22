@@ -11,10 +11,15 @@
   padding: 0.5em 1em;
   cursor: pointer;
   transition: var(--transition-250-eio);
+  color: var(--white);
   border: none;
   outline: none;
   background-color: transparent;
   gap: 0.5em;
+  
+  .light-theme & {
+	color: white;
+  }
 
   &:before {
 	position: absolute;
@@ -31,14 +36,28 @@
 
   &.active {
 	color: var(--primary);
+	
+	.light-theme & {
+	  font-weight: 700;
+	  color: white;
+	}
 
 	&:before {
 	  transform: translateY(-50%) scaleX(1);
 	  opacity: 1;
+	  
+	  .light-theme & {
+		background-color: white;
+	  }
 	}
   }
 
   &:hover {
 	color: var(--primary);
+	
+	.light-theme & {
+	  opacity: 0.9;
+	  color: white;
+	}
   }
 }

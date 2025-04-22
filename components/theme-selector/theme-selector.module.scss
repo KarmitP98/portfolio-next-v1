@@ -1,0 +1,20 @@
+.themeSelector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: var(--transition-250-eio);
+  border: none;
+  border-radius: 50%;
+  background: none;
+  
+  &:hover {
+	background-color: var(--primary-hover);
+  }
+  
+  &:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--primary);
+  }
+}

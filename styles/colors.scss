@@ -1,4 +1,5 @@
 :root {
+  // Dark theme colors (default)
   --dark: #303030;
   --background: #212121;
   --primary: #ffe240;
@@ -16,6 +17,35 @@
   --shade-2: #454545;
   --shade-3: #5e5e5e;
   --shade-4: #787878;
+  
+  --primary-hover: rgba(255, 226, 64, 0.10);
+}
+
+// Light theme colors
+.light-theme {
+  --dark: #f0f0f0;
+  --background: #ffffff;
+  --primary: #4da6ff;
+  --white: #212121;
+  --font-shade-1: #555555;
+  --accent-1: #00c28f;
+  --accent-2: #c919d8;
+  --accent-3: #0046cc;
+  --accent-4: #c91960;
+  --accent-5: #0088cc;
+  --accent-6: #8a5446;
+  --accent-7: #212121;
+  --accent-8: var(--primary);
+  --shade-1: #e0e0e0;
+  --shade-2: #d0d0d0;
+  --shade-3: #c0c0c0;
+  --shade-4: #a0a0a0;
+  
+  --primary-hover: rgba(77, 166, 255, 0.10);
+}
+
+// Dark theme class for explicit styling
+.dark-theme {
 
   --h0: 47.8px;
   --h1: 2.488em;

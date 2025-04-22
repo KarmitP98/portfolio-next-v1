@@ -1,14 +1,16 @@
 import classes from './footer.module.scss';
 import Cta from '../cta/cta';
 import Image from 'next/image';
+import {useTheme} from '../../context/ThemeContext';
 
 const Footer = () => {
-	
+
+	const {theme} = useTheme();
 	const footerLinks: { label: string, url: string, iconName: string }[] = [
 		{
 			label: 'Github',
 			url: 'https://github.com/KarmitP98',
-			iconName: 'Github-White'
+			iconName: 'Github'
 		},
 		{
 			label: 'LinkedIn',
@@ -31,15 +33,16 @@ const Footer = () => {
 			iconName: 'Facebook'
 		}
 	];
-	
-	
+
+
 	return (
 	  <footer className={`${classes.footer}`}>
 		  {
 			  footerLinks.map((link, index) =>
 				<a key={`${index}-${link.label}`} href={link.url} target={'_blank'} rel='noreferrer'>
 					<Cta theme={'secondary'} shape={'md'}>
-						<Image src={`/assets/svg/${link.iconName}.svg`} alt={link.label} width={24} height={24}/>
+						<Image src={`/assets/svg/${theme}/${link.iconName}.svg`} alt={link.label} width={24}
+							   height={24}/>
 						<span className={classes.label}>{link.label}</span>
 					</Cta>
 				</a>)

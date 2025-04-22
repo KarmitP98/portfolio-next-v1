@@ -4,17 +4,19 @@ import Cta from '../cta/cta';
 import {CommonProps} from '../../models/common-props.model';
 import React, {FormEvent, useRef} from 'react';
 import {addMessage} from '../../firebase/store';
+import {useTheme} from '../../context/ThemeContext';
 
 const Contact = (props: CommonProps) => {
-	
+
+	const {theme} = useTheme();
 	const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const emailRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const messageRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
-	
-	
+
+
 	const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		
+
 		const email = emailRef.current.value;
 		const name = nameRef.current.value;
 		const message = messageRef.current.value;
@@ -27,14 +29,14 @@ const Contact = (props: CommonProps) => {
 			}, 5000);
 		}
 	};
-	
+
 	const clearForm = () => {
 		emailRef.current.value = '';
 		nameRef.current.value = '';
 		messageRef.current.value = '';
 	};
-	
-	
+
+
 	return (
 	  <section className={`page ${props.loaded ? 'loaded' : ''}`} id={props.id}>
 		  <article className={classes.contentPage}>
@@ -42,7 +44,7 @@ const Contact = (props: CommonProps) => {
 				  <ul>
 					  <li className={classes.line}>
 						  <div className={classes.icon}>
-							  <Image src={'/assets/svg/mail.svg'} alt={'Mail'} width={32} height={32}/>
+							  <Image src={`/assets/svg/${theme}/mail.svg`} alt={'Mail'} width={32} height={32}/>
 						  </div>
 						  <a
 							className={classes.text} href='mailto:karmit199@gmail.com' target='_blank' rel='noreferrer'
@@ -52,7 +54,7 @@ const Contact = (props: CommonProps) => {
 					  </li>
 					  <li className={classes.line}>
 						  <div className={classes.icon}>
-							  <Image src={'/assets/svg/phone.svg'} alt={'Phone'} width={32} height={32}/>
+							  <Image src={`/assets/svg/${theme}/phone.svg`} alt={'Phone'} width={32} height={32}/>
 						  </div>
 						  <a className={classes.text} href='tel:+1-647-575-5240' target='_blank' rel='noreferrer'>
 							  +1-647-575-5240
@@ -60,7 +62,7 @@ const Contact = (props: CommonProps) => {
 					  </li>
 					  <li className={classes.line}>
 						  <div className={classes.icon}>
-							  <Image src={'/assets/svg/location.svg'} alt={'Location'} width={32} height={32}/>
+							  <Image src={`/assets/svg/${theme}/location.svg`} alt={'Location'} width={32} height={32}/>
 						  </div>
 						  <a
 							className={classes.text} href='https://goo.gl/maps/Vyj82w4XdnijGX9o9' target='_blank'

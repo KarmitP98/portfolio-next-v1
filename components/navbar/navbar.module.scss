@@ -11,6 +11,10 @@
   height: fit-content;
   padding: 0 5%;
   background-color: var(--dark);
+  
+  .light-theme & {
+	background-color: var(--primary);
+  }
 
   .links {
 	position: fixed;
@@ -26,6 +30,10 @@
 	list-style: none;
 	transition: var(--transition-250-eio);
 	background-color: var(--dark);
+	
+	.light-theme & {
+	  background-color: var(--primary);
+	}
 	gap: 2em;
 
 	li button {
@@ -39,6 +47,17 @@
 
   .menuButton, .logo {
 	z-index: 30;
+  }
+  
+  .actions {
+	z-index: 30;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+  }
+  
+  .themeToggle {
+	display: none;
   }
 }
 
@@ -62,7 +81,11 @@
 	  &.active {
 		left: auto;
 	  }
-
+	  
+	  .themeToggle {
+		display: flex;
+		margin-left: 1rem;
+	  }
 	}
 
 	.menuButton {

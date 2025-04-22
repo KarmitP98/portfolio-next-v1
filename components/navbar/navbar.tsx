@@ -3,9 +3,10 @@ import Logo from '../logo/logo';
 import classes from './navbar.module.scss';
 import Cta from '../cta/cta';
 import NavLink from '../nav-link/nav-link';
+import ThemeSelector from '../theme-selector/theme-selector';
 
 const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: NavbarModel) => {
-	
+
 	const tabs: { label: string, href: string }[] = [
 		{label: 'Home', href: 'home'},
 		{label: 'About', href: 'about'},
@@ -13,7 +14,7 @@ const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: Na
 		{label: 'Projects', href: 'projects'},
 		{label: 'Contact Me', href: 'contact'}
 	];
-	
+
 	return (
 	  <nav className={classes.nav}>
 		  <Logo onClick={() => navigateTo('home')}/>
@@ -26,13 +27,18 @@ const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: Na
 					    </NavLink>
 				    </li>)
 			  }
+			  <li className={classes.themeToggle}>
+				  <ThemeSelector/>
+			  </li>
 		  </ul>
-		  <div className={classes.menuButton} onClick={() => setOpened(prevState => (!prevState))}>
-			  <Cta theme={'none'} shape={'icon'}>
-				  <span className='material-icons-round'>
-					  {opened ? 'close' : 'menu'}
-				  </span>
-			  </Cta>
+		  <div className={classes.actions}>
+			  <div className={classes.menuButton} onClick={() => setOpened(prevState => (!prevState))}>
+				  <Cta theme={'none'} shape={'icon'}>
+					  <span className='material-icons-round'>
+						  {opened ? 'close' : 'menu'}
+					  </span>
+				  </Cta>
+			  </div>
 		  </div>
 	  </nav>
 	);
