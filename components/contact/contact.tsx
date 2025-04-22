@@ -2,13 +2,14 @@ import classes from './contact.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
 import {CommonProps} from '../../models/common-props.model';
-import React, {FormEvent, useRef} from 'react';
+import React, {FormEvent, useRef, useState} from 'react';
 import {addMessage} from '../../firebase/store';
 import {useTheme} from '../../context/ThemeContext';
 
 const Contact = (props: CommonProps) => {
 
 	const {theme} = useTheme();
+	const [isLoading, setIsLoading] = useState(false);
 	const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const emailRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const messageRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
@@ -21,12 +22,17 @@ const Contact = (props: CommonProps) => {
 		const name = nameRef.current.value;
 		const message = messageRef.current.value;
 		if (name && message && email) {
-			const response = await addMessage({name, email, message});
-			clearForm();
-			props.setToast(response);
-			setTimeout(() => {
-				props.setToast(undefined);
-			}, 5000);
+			setIsLoading(true);
+			try {
+				const response = await addMessage({name, email, message});
+				clearForm();
+				props.setToast(response);
+				setTimeout(() => {
+					props.setToast(undefined);
+				}, 5000);
+			} finally {
+				setIsLoading(false);
+			}
 		}
 	};
 
@@ -77,16 +83,31 @@ const Contact = (props: CommonProps) => {
 				  <form onSubmit={sendMessage}>
 					  <h1>Get in Touch</h1>
 					  <input
-					    type='text' name='fullname' id='fullname' placeholder={'What do I call you?'} ref={nameRef}
+						  type='text' name='fullname' id='fullname' placeholder={'What do I call you?'} ref={nameRef}
+						  autoComplete={'given-name'}
+						  disabled={isLoading}
 					  />
-					  <input type='email' name='email' id='email' placeholder={'Maybe an email...'} ref={emailRef}/>
-					  <textarea placeholder={'Tell me your story and how I can make it better'} ref={messageRef}/>
+					  <input type='email' name='email' id='email' placeholder={'Maybe an email...'} ref={emailRef}
+							 autoComplete={'email'} disabled={isLoading}/>
+					  <textarea placeholder={'Tell me your story and how I can make it better'} ref={messageRef}
+								disabled={isLoading}/>
 					  <div className={classes.actionBar}>
-						  <Cta theme={'primary'} shape={'full'} type={'submit'}>
-							  Shoot Me A Message
-							  <span className='material-icons-round'>
-								  send
-							  </span>
+						  <Cta theme={'primary'} shape={'full'} type={'submit'} disabled={isLoading}>
+							  {isLoading ? (
+								  <>
+									<span className={`material-icons-round ${classes.spinner}`}>
+										refresh
+									</span>
+									  Sending...
+								  </>
+							  ) : (
+								  <>
+									  Shoot Me A Message
+									  <span className='material-icons-round'>
+										send
+									</span>
+								  </>
+							  )}
 						  </Cta>
 					  </div>
 				  </form>

@@ -70,15 +70,21 @@
 		font-weight: 800;
 		margin-bottom: 0.25em;
 	  }
-
+	  
 	  input, textarea {
 		width: 100%;
 		padding: .75rem 1.25rem;
+		transition: opacity 0.3s ease;
 		color: var(--white);
 		border: 1px solid var(--white);
 		border-radius: 50rem;
 		outline: none;
 		background-color: transparent;
+		
+		&:disabled {
+		  cursor: not-allowed;
+		  opacity: 0.6;
+		}
 	  }
 
 	  textarea {
@@ -97,6 +103,21 @@
   }
 
 
+}
+
+.spinner {
+  display: inline-block;
+  margin-right: 8px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+	transform: rotate(0deg);
+  }
+  100% {
+	transform: rotate(360deg);
+  }
 }
 
 @media screen and (width > 768px) {
