@@ -3,7 +3,6 @@ var path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
   sassOptions: {
 	includePaths: [path.join(__dirname, 'styles')]
   },
@@ -13,8 +12,7 @@ const nextConfig = {
 		protocol: 'https',
 		hostname: 'firebasestorage.googleapis.com'
 	  }
-	],
-	unoptimized: true
+	]
   }
 };
 
