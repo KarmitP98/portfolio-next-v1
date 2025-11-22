@@ -19,7 +19,7 @@ const Hero = (props: any) => {
 					  FRONTEND DEVELOPER + UI DESIGNER 💻
 				  </h2>
 				  <p itemProp='description'>
-					  I'm a Professional Frontend Developer
+					  I&apos;m a Professional Frontend Developer
 					  with UI/UX Design Skills based in Toronto.
 				  </p>
 			  </div>
