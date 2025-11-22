@@ -1,13 +1,32 @@
 # Portfolio Next.js Application
 
-This is a personal portfolio web application built with [Next.js](https://nextjs.org/). It showcases projects, skills, and contact information, providing an interactive and modern way to present your professional profile online. The application is styled with SCSS modules and integrates with Firebase for backend services.
+This is the personal portfolio web application for **Karmit Patel** from [karmitp.com](https://karmitp.com), built with [Next.js](https://nextjs.org/). Karmit is a Frontend Developer & UI/UX Designer based in Toronto, Canada. The application provides an interactive and modern way to present professional profile, projects, skills, and services online.
+
+## About This Application
+
+This portfolio website is the source code for [karmitp.com](https://karmitp.com), a single-page application (SPA) that features a smooth scrolling navigation system with multiple sections:
+
+- **Hero Section**: Introduction with professional title and call-to-action
+- **About Section**: Personal background and professional journey
+- **Technologies Section**: Showcases expertise in Angular, React, Vue.js, and other technologies
+- **Services Section**: Highlights Frontend Development and UI/UX Design services
+- **Projects Section**: Displays featured projects including Snazzy Chat and Shoppers Land
+- **Contact Section**: Interactive contact form with Firebase integration for message storage
+
+The application emphasizes modern web development practices with accessibility features, SEO optimization through structured data (JSON-LD), and a responsive design that works seamlessly across all devices.
 
 ## Features
-- Responsive, modern design
-- Project and service showcase
-- Contact form
-- Firebase integration
-- Built with TypeScript and SCSS modules
+
+- **Responsive Design**: Modern, mobile-first design that adapts to all screen sizes
+- **Smooth Scrolling Navigation**: Section-based navigation with active tab highlighting
+- **Interactive Contact Form**: Firebase-powered contact form with toast notifications
+- **SEO Optimized**: Comprehensive meta tags and structured data (JSON-LD) for better search engine visibility
+- **Accessibility**: ARIA labels, semantic HTML, and keyboard navigation support
+- **Performance**: Optimized images with Next.js Image component and lazy loading
+- **Type Safety**: Built with TypeScript for type-safe development
+- **Modular Styling**: SCSS modules for component-scoped styling
+- **Firebase Integration**: Backend services for contact form message storage
+- **Loading Animations**: Custom loading curtain with animated cube loader
 
 ## Getting Started
 
@@ -60,12 +79,39 @@ firebase deploy
 See `firebase.json` for hosting configuration.
 
 ## Project Structure
-- `components/` – Reusable UI components
-- `pages/` – Next.js pages and API routes
-- `firebase/` – Firebase configuration and store
-- `models/` – TypeScript models and interfaces
-- `public/` – Static assets
-- `styles/` – Global and modular SCSS styles
+
+```
+portfolio-next-v1/
+├── components/          # Reusable UI components
+│   ├── contact/        # Contact form component
+│   ├── cta/            # Call-to-action button component
+│   ├── footer/         # Footer with social links
+│   ├── hero/           # Hero section component
+│   ├── navbar/         # Navigation bar component
+│   ├── project/        # Project showcase component
+│   └── servicelanguage/ # Services and technologies display
+├── pages/              # Next.js pages and API routes
+│   └── index.tsx       # Main homepage with all sections
+├── firebase/           # Firebase configuration and store
+│   └── store.ts        # Firebase Firestore operations
+├── models/             # TypeScript models and interfaces
+├── public/             # Static assets (images, SVGs, icons)
+│   └── assets/         # Images, SVGs, and other media files
+├── styles/             # Global and modular SCSS styles
+│   ├── colors.scss     # Color variables and themes
+│   └── Home.module.scss # Home page styles
+└── utils/              # Utility functions
+    └── structured-data.ts # JSON-LD schema generation
+```
+
+## Key Technologies
+
+- **Next.js 13**: React framework with server-side rendering and static generation
+- **React 18**: UI library with hooks-based architecture
+- **TypeScript**: Type-safe JavaScript for better development experience
+- **SCSS/Sass**: CSS preprocessor with modular styling
+- **Firebase**: Backend services for contact form message storage
+- **Next.js Image**: Optimized image loading and rendering
 
 ## Customization
 Edit the content in `components/` and `pages/` to personalize your portfolio. Update assets in `public/assets/` as needed.
