@@ -19,30 +19,55 @@ const Project = ({
                  }: ProjectPropsModel) => {
 	
 	const getImageURL = (): string => imageName ? `/assets/${imageName}` : imageURL || '';
+	const isAboutSection = name === 'about';
+	
 	return (
-	  <section className={`${classes.page} ${name ? classes.about : ''} ${loaded ? classes.loaded : ''}`} id={id}>
+	  <article 
+	    className={`${classes.page} ${name ? classes.about : ''} ${loaded ? classes.loaded : ''}`} 
+	    id={id}
+	    itemScope 
+	    itemType={isAboutSection ? 'https://schema.org/Person' : 'https://schema.org/CreativeWork'}
+	    role={isAboutSection ? 'article' : 'article'}
+	    aria-labelledby={`${id}-heading`}
+	  >
 		  <div className={`${classes.contentPage} ${classes[imageSide]}`}>
 			  <div className={classes.contentInfo}>
-				  <h1>{title}</h1>
-				  <p>{description}</p>
-				  <div className='action-bar'>
-					  <a href={projectURL} target={'_blank'} rel='noreferrer'>
-						  <Cta theme={'primary'} shape={'full'}>{ctaLabel || 'Check it out'}
-							  <span className='material-icons-round'>
+				  <h2 id={`${id}-heading`} itemProp={isAboutSection ? 'name' : 'name'}>
+					  {title}
+				  </h2>
+				  <p itemProp={isAboutSection ? 'description' : 'description'}>
+					  {description}
+				  </p>
+				  <nav className='action-bar' aria-label={`Actions for ${title}`}>
+					  <a 
+					    href={projectURL} 
+					    target={'_blank'} 
+					    rel='noreferrer noopener'
+					    itemProp={isAboutSection ? 'url' : 'url'}
+					    aria-label={`${ctaLabel || 'View'} ${title} - Opens in new tab`}
+					  >
+						  <Cta theme={'primary'} shape={'full'}>
+							  {ctaLabel || 'Check it out'}
+							  <span className='material-icons-round' aria-hidden='true'>
 								  open_in_new
 							  </span>
 						  </Cta>
 					  </a>
-				  </div>
+				  </nav>
 			  </div>
-			  <div className={classes.contentImage}>
+			  <figure className={classes.contentImage}>
 				  <Image
-					src={getImageURL()} alt={`${title}-Image`} width={1920} height={1080}
+					src={getImageURL()} 
+					alt={`${title} - ${description.substring(0, 100)}${description.length > 100 ? '...' : ''}`} 
+					width={1920} 
+					height={1080}
 					className={`${classes[imageLoad]}`}
+					itemProp='image'
+					loading={loaded ? 'eager' : 'lazy'}
 				  />
-			  </div>
+			  </figure>
 		  </div>
-	  </section>
+	  </article>
 	);
 };
 

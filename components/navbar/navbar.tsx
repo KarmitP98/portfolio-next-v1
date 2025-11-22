@@ -15,13 +15,29 @@ const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: Na
 	];
 	
 	return (
-	  <nav className={classes.nav}>
-		  <Logo onClick={() => navigateTo('home')}/>
-		  <ul className={`${classes.links} ${opened ? classes.active : ''}`}>
+	  <nav 
+	    className={classes.nav} 
+	    role='navigation' 
+	    aria-label='Main Navigation'
+	    itemScope 
+	    itemType='https://schema.org/SiteNavigationElement'
+	  >
+		  <Logo onClick={() => navigateTo('home')} aria-label='Home - Karmit Patel Portfolio'/>
+		  <ul 
+		    className={`${classes.links} ${opened ? classes.active : ''}`} 
+		    role='menubar'
+		    aria-expanded={opened}
+		  >
 			  {
 				  tabs.map((tab, index) =>
-				    <li key={index + tab.href}>
-					    <NavLink active={active === tab.href} onClick={() => navigateTo(tab.href)}>
+				    <li key={index + tab.href} role='none'>
+					    <NavLink 
+						    active={active === tab.href} 
+						    onClick={() => navigateTo(tab.href)}
+						    role='menuitem'
+						    aria-current={active === tab.href ? 'page' : undefined}
+						    aria-label={`Navigate to ${tab.label} section`}
+					    >
 						    {tab.label}
 					    </NavLink>
 				    </li>)
@@ -29,7 +45,7 @@ const Navbar = ({active, setActive, opened, setOpened, navigateTo, ...props}: Na
 		  </ul>
 		  <div className={classes.menuButton} onClick={() => setOpened(prevState => (!prevState))}>
 			  <Cta theme={'none'} shape={'icon'}>
-				  <span className='material-icons-round'>
+				  <span className='material-icons-round' aria-hidden='true'>
 					  {opened ? 'close' : 'menu'}
 				  </span>
 			  </Cta>

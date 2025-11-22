@@ -36,53 +36,102 @@ const Contact = (props: CommonProps) => {
 	
 	
 	return (
-	  <section className={`page ${props.loaded ? 'loaded' : ''}`} id={props.id}>
+	  <section 
+	    className={`page ${props.loaded ? 'loaded' : ''}`} 
+	    id={props.id}
+	    itemScope 
+	    itemType='https://schema.org/ContactPage'
+	    aria-labelledby='contact-heading'
+	  >
 		  <article className={classes.contentPage}>
-			  <div className={classes.contentInfo}>
-				  <ul>
-					  <li className={classes.line}>
-						  <div className={classes.icon}>
-							  <Image src={'/assets/svg/mail.svg'} alt={'Mail'} width={32} height={32}/>
-						  </div>
-						  <a
-							className={classes.text} href='mailto:karmit199@gmail.com' target='_blank' rel='noreferrer'
-						  >
-							  karmit199@gmail.com
-						  </a>
-					  </li>
-					  <li className={classes.line}>
-						  <div className={classes.icon}>
-							  <Image src={'/assets/svg/phone.svg'} alt={'Phone'} width={32} height={32}/>
-						  </div>
-						  <a className={classes.text} href='tel:+1-647-575-5240' target='_blank' rel='noreferrer'>
-							  +1-647-575-5240
-						  </a>
-					  </li>
-					  <li className={classes.line}>
-						  <div className={classes.icon}>
-							  <Image src={'/assets/svg/location.svg'} alt={'Location'} width={32} height={32}/>
-						  </div>
-						  <a
-							className={classes.text} href='https://goo.gl/maps/Vyj82w4XdnijGX9o9' target='_blank'
-							rel='noreferrer'
-						  >
-							  Toronto, Canada
-						  </a>
-					  </li>
-				  </ul>
-			  </div>
+			  <aside className={classes.contentInfo} itemScope itemType='https://schema.org/Person' aria-label='Contact Information'>
+				  <h2 id='contact-heading' className='sr-only'>Contact Information</h2>
+				  <address>
+					  <ul role='list' aria-label='Contact methods'>
+						  <li className={classes.line} itemProp='email'>
+							  <figure className={classes.icon} aria-hidden='true'>
+								  <Image src={'/assets/svg/mail.svg'} alt={''} width={32} height={32}/>
+							  </figure>
+							  <a
+								className={classes.text} 
+								href='mailto:karmit199@gmail.com' 
+								target='_blank' 
+								rel='noreferrer'
+								itemProp='email'
+								aria-label='Send email to karmit199@gmail.com'
+							  >
+								  karmit199@gmail.com
+							  </a>
+						  </li>
+						  <li className={classes.line} itemProp='telephone'>
+							  <figure className={classes.icon} aria-hidden='true'>
+								  <Image src={'/assets/svg/phone.svg'} alt={''} width={32} height={32}/>
+							  </figure>
+							  <a 
+								className={classes.text} 
+								href='tel:+1-647-575-5240' 
+								target='_blank' 
+								rel='noreferrer'
+								itemProp='telephone'
+								aria-label='Call +1-647-575-5240'
+							  >
+								  +1-647-575-5240
+							  </a>
+						  </li>
+						  <li className={classes.line} itemScope itemType='https://schema.org/PostalAddress'>
+							  <figure className={classes.icon} aria-hidden='true'>
+								  <Image src={'/assets/svg/location.svg'} alt={''} width={32} height={32}/>
+							  </figure>
+							  <a
+								className={classes.text} 
+								href='https://goo.gl/maps/Vyj82w4XdnijGX9o9' 
+								target='_blank'
+								rel='noreferrer'
+								itemProp='address'
+								aria-label='View location on Google Maps - Toronto, Canada'
+							  >
+								  <span itemProp='addressLocality'>Toronto</span>, <span itemProp='addressCountry'>Canada</span>
+							  </a>
+						  </li>
+					  </ul>
+				  </address>
+			  </aside>
 			  <div className={classes.contentForm}>
-				  <form onSubmit={sendMessage}>
-					  <h1>Get in Touch</h1>
+				  <form onSubmit={sendMessage} itemScope itemType='https://schema.org/ContactForm' aria-labelledby='contact-form-heading'>
+					  <h2 id='contact-form-heading'>Get in Touch</h2>
+					  <label htmlFor='fullname' className='sr-only'>Your Name</label>
 					  <input
-					    type='text' name='fullname' id='fullname' placeholder={'What do I call you?'} ref={nameRef}
+					    type='text' 
+					    name='fullname' 
+					    id='fullname' 
+					    placeholder={'What do I call you?'} 
+					    ref={nameRef}
+					    aria-required='true'
+					    aria-label='Enter your full name'
 					  />
-					  <input type='email' name='email' id='email' placeholder={'Maybe an email...'} ref={emailRef}/>
-					  <textarea placeholder={'Tell me your story and how I can make it better'} ref={messageRef}/>
+					  <label htmlFor='email' className='sr-only'>Your Email</label>
+					  <input 
+					    type='email' 
+					    name='email' 
+					    id='email' 
+					    placeholder={'Maybe an email...'} 
+					    ref={emailRef}
+					    aria-required='true'
+					    aria-label='Enter your email address'
+					  />
+					  <label htmlFor='message' className='sr-only'>Your Message</label>
+					  <textarea 
+					    id='message'
+					    name='message'
+					    placeholder={'Tell me your story and how I can make it better'} 
+					    ref={messageRef}
+					    aria-required='true'
+					    aria-label='Enter your message'
+					  />
 					  <div className={classes.actionBar}>
-						  <Cta theme={'primary'} shape={'full'} type={'submit'}>
+						  <Cta theme={'primary'} shape={'full'} type={'submit'} aria-label='Submit contact form'>
 							  Shoot Me A Message
-							  <span className='material-icons-round'>
+							  <span className='material-icons-round' aria-hidden='true'>
 								  send
 							  </span>
 						  </Cta>

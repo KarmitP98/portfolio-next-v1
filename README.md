@@ -1,9 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped
-with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio Next.js Application
+
+This is a personal portfolio web application built with [Next.js](https://nextjs.org/). It showcases projects, skills, and contact information, providing an interactive and modern way to present your professional profile online. The application is styled with SCSS modules and integrates with Firebase for backend services.
+
+## Features
+- Responsive, modern design
+- Project and service showcase
+- Contact form
+- Firebase integration
+- Built with TypeScript and SCSS modules
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js (v18 or newer recommended)
+- npm or yarn
+
+### Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
@@ -11,16 +31,47 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Build for production
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed
-on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited
-in `pages/api/hello.ts`.
+```bash
+npm run build
+# or
+yarn build
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated
-as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To start the production server after building:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+### Deploy
+
+This application can be easily deployed to [Vercel](https://vercel.com/) or any platform that supports Next.js. For Firebase hosting, ensure you have the Firebase CLI installed and configured:
+
+```bash
+firebase deploy
+```
+
+See `firebase.json` for hosting configuration.
+
+## Project Structure
+- `components/` – Reusable UI components
+- `pages/` – Next.js pages and API routes
+- `firebase/` – Firebase configuration and store
+- `models/` – TypeScript models and interfaces
+- `public/` – Static assets
+- `styles/` – Global and modular SCSS styles
+
+## Customization
+Edit the content in `components/` and `pages/` to personalize your portfolio. Update assets in `public/assets/` as needed.
+
+## License
+This project is open source and available under the MIT License.
 
 ## Learn More
 
