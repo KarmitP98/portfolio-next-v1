@@ -34,16 +34,41 @@ const Footer = () => {
 	
 	
 	return (
-	  <footer className={`${classes.footer}`}>
-		  {
-			  footerLinks.map((link, index) =>
-				<a key={`${index}-${link.label}`} href={link.url} target={'_blank'} rel='noreferrer'>
-					<Cta theme={'secondary'} shape={'md'}>
-						<Image src={`/assets/svg/${link.iconName}.svg`} alt={link.label} width={24} height={24}/>
-						<span className={classes.label}>{link.label}</span>
-					</Cta>
-				</a>)
-		  }
+	  <footer 
+	    className={`${classes.footer}`} 
+	    role='contentinfo'
+	    itemScope 
+	    itemType='https://schema.org/WPFooter'
+	    aria-label='Social Media and Professional Links'
+	  >
+		  <nav aria-label='Social Media Links'>
+			  <ul role='list' style={{listStyle: 'none', padding: 0, margin: 0, display: 'flex', gap: '1rem'}}>
+				  {
+					  footerLinks.map((link, index) => (
+						<li key={`${index}-${link.label}`} role='listitem'>
+						  <a 
+						    href={link.url} 
+						    target={'_blank'} 
+						    rel='noreferrer noopener me'
+						    itemProp='sameAs'
+						    aria-label={`${link.label} profile - Opens in new tab`}
+						  >
+							  <Cta theme={'secondary'} shape={'md'}>
+								  <Image 
+								    src={`/assets/svg/${link.iconName}.svg`} 
+								    alt='' 
+								    width={24} 
+								    height={24}
+								    aria-hidden='true'
+								  />
+								  <span className={classes.label}>{link.label}</span>
+							  </Cta>
+						  </a>
+						</li>
+					  ))
+				  }
+			  </ul>
+		  </nav>
 	  </footer>
 	);
 };

@@ -13,6 +13,12 @@ import Image from 'next/image';
 import Footer from '../components/footer/footer';
 import Hero from '../components/hero/hero';
 import Contact from '../components/contact/contact';
+import {
+	generatePersonSchema,
+	generateWebSiteSchema,
+	generateOrganizationSchema,
+	generateProfilePageSchema
+} from '../utils/structured-data';
 
 const Home: NextPage = () => {
 	
@@ -164,65 +170,252 @@ const Home: NextPage = () => {
 	};
 	
 	
+	const siteUrl = 'https://karmitp.com/';
+	const siteName = 'Karmit Patel Portfolio';
+	const siteDescription = 'Karmit Patel is a professional Frontend Developer and UI/UX Designer based in Toronto. Specializing in React, Angular, and Vue.js development with expertise in creating modern, responsive web applications and e-commerce platforms.';
+	const authorName = 'Karmit Patel';
+	const ogImage = 'https://firebasestorage.googleapis.com/v0/b/karmitp98.appspot.com/o/meta-screenshot.png?alt=media&token=f21c3c0f-d159-470e-ab2d-52fa746527c2';
+	
+	const linkedInUrl = 'https://www.linkedin.com/in/karmitpatel/';
+	const githubUrl = 'https://github.com/KarmitP98';
+	const stackOverflowUrl = 'https://stackoverflow.com/users/9695681/karmit-patel';
+	const figmaUrl = 'https://www.figma.com/@karmitpatel';
+	const facebookUrl = 'https://www.facebook.com/karmit1998';
+	
+	const programmingLanguages = [
+		'JavaScript',
+		'TypeScript',
+		'HTML5',
+		'CSS3',
+		'Java',
+		'C#'
+	];
+	
+	const frameworks = [
+		'React',
+		'Angular',
+		'Vue.js',
+		'Next.js'
+	];
+	
+	const applications = [
+		'Figma',
+		'Firebase',
+		'Git',
+		'GitHub',
+		'Visual Studio Code',
+		'Adobe Creative Suite'
+	];
+	
+	const allSkills = [
+		'Frontend Development',
+		'UI/UX Design',
+		'Web Development',
+		'E-Commerce Development',
+		'Responsive Design',
+		'Component-Based Architecture',
+		'RESTful APIs',
+		'State Management',
+		'Micro-animations',
+		'Minimalistic Design',
+		'Geometric Design',
+		'Isometric Design',
+		'Mobile-First Development',
+		'Progressive Web Apps',
+		'Performance Optimization'
+	];
+	
+	const personSchema = generatePersonSchema({
+		name: authorName,
+		jobTitle: 'Frontend Developer & UI/UX Designer',
+		description: siteDescription,
+		url: siteUrl,
+		image: ogImage,
+		socialProfiles: [
+			linkedInUrl,
+			githubUrl,
+			stackOverflowUrl,
+			figmaUrl,
+			facebookUrl
+		],
+		skills: allSkills,
+		programmingLanguages: programmingLanguages,
+		frameworks: frameworks,
+		applications: applications,
+		linkedInUrl: linkedInUrl,
+		location: {
+			city: 'Toronto',
+			region: 'Ontario',
+			country: 'Canada'
+		}
+	});
+	
+	const webSiteSchema = generateWebSiteSchema({
+		name: siteName,
+		url: siteUrl,
+		description: siteDescription,
+		authorName: authorName
+	});
+	
+	const organizationSchema = generateOrganizationSchema({
+		name: siteName,
+		url: siteUrl,
+		logo: ogImage,
+		description: siteDescription
+	});
+	
+	const profilePageSchema = generateProfilePageSchema({
+		name: `${authorName} - Professional Profile`,
+		url: siteUrl,
+		description: `${siteDescription} Connect on LinkedIn: ${linkedInUrl}`,
+		personName: authorName,
+		jobTitle: 'Frontend Developer & UI/UX Designer',
+		personUrl: siteUrl,
+		socialProfiles: [
+			linkedInUrl,
+			githubUrl,
+			stackOverflowUrl,
+			figmaUrl,
+			facebookUrl
+		]
+	});
+	
 	return (
-	  <div className={styles.container}>
+	  <div className={styles.container} itemScope itemType='https://schema.org/Person'>
 		  <Head>
 			  <link rel='icon' href='/favicon.ico'/>
+			  <link rel='canonical' href={siteUrl}/>
 			
 			  <meta charSet='utf-8'/>
 			  <meta content='width=device-width, initial-scale=1' name='viewport'/>
 			  <meta content='#FFE240' name='theme-color'/>
-			  <meta content='Personal portfolio website for Karmit Patel.' name='description'/>
+			  
+			  <title>Karmit Patel - Frontend Developer & UI/UX Designer | Portfolio</title>
+			  <meta name='description' content={siteDescription}/>
+			  <meta name='keywords' content={`Frontend Developer, UI/UX Designer, React Developer, Angular Developer, Vue.js Developer, Web Developer, Toronto, Next.js, TypeScript, JavaScript, Portfolio, E-Commerce Developer, ${programmingLanguages.join(', ')}, ${frameworks.join(', ')}, ${applications.join(', ')}, LinkedIn: ${linkedInUrl}`}/>
+			  <meta name='author' content={authorName}/>
+			  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
+			  <meta name='language' content='English'/>
+			  <meta name='geo.region' content='CA-ON'/>
+			  <meta name='geo.placename' content='Toronto'/>
+			  <meta name='geo.position' content='43.6532;-79.3832'/>
+			  
+			  <meta name='programming-languages' content={programmingLanguages.join(', ')}/>
+			  <meta name='frameworks' content={frameworks.join(', ')}/>
+			  <meta name='applications' content={applications.join(', ')}/>
+			  <meta name='linkedin' content={linkedInUrl}/>
+			  <meta name='github' content={githubUrl}/>
+			  <meta name='stackoverflow' content={stackOverflowUrl}/>
+			  <meta name='figma' content={figmaUrl}/>
+			  <meta name='facebook' content={facebookUrl}/>
+			  <meta name='skills' content={allSkills.join(', ')}/>
+			  
 			  <link href='/assets/logo192.png' rel='apple-touch-icon'/>
 			
-			  <meta content='Karmit Patel Portfolio' property='og:title'/>
-			  <meta content='https://karmitp.com/' property='og:url'/>
-			  <meta
-			    content='Karmit Patel portfolio website. Learn more about my work, experiences, skills, awards, and intersets.'
-			    property='og:description'
+			  <meta property='og:type' content='website'/>
+			  <meta property='og:title' content={`${authorName} - Frontend Developer & UI/UX Designer | Portfolio`}/>
+			  <meta property='og:url' content={siteUrl}/>
+			  <meta property='og:description' content={siteDescription}/>
+			  <meta property='og:site_name' content={siteName}/>
+			  <meta property='og:image' content={ogImage}/>
+			  <meta property='og:image:width' content='1200'/>
+			  <meta property='og:image:height' content='630'/>
+			  <meta property='og:image:alt' content={`${authorName} Portfolio Website`}/>
+			  <meta property='og:locale' content='en_US'/>
+			  <meta property='article:author' content={authorName}/>
+			  <meta property='profile:first_name' content='Karmit'/>
+			  <meta property='profile:last_name' content='Patel'/>
+			  <meta property='profile:username' content='karmitpatel'/>
+			  
+			  <meta name='linkedin:owner' content={linkedInUrl}/>
+			  <meta name='linkedin:profile' content={linkedInUrl}/>
+			  
+			  <meta name='twitter:card' content='summary_large_image'/>
+			  <meta name='twitter:site' content='@karmitpatel'/>
+			  <meta name='twitter:creator' content='@karmitpatel'/>
+			  <meta name='twitter:title' content={`${authorName} - Frontend Developer & UI/UX Designer`}/>
+			  <meta name='twitter:description' content={siteDescription}/>
+			  <meta name='twitter:image' content={ogImage}/>
+			  <meta name='twitter:image:alt' content={`${authorName} Portfolio Website`}/>
+			  
+			  <script
+			    type='application/ld+json'
+			    dangerouslySetInnerHTML={{__html: JSON.stringify(personSchema)}}
 			  />
-			  <meta content='Karmit Patel' property='article:author'/>
-			  <meta content='Karmit Patel Portfolio' property='og:site_name'/>
-			  <meta
-			    content='https://firebasestorage.googleapis.com/v0/b/karmitp98.appspot.com/o/meta-screenshot.png?alt=media&token=f21c3c0f-d159-470e-ab2d-52fa746527c2'
-			    property='og:image'
+			  <script
+			    type='application/ld+json'
+			    dangerouslySetInnerHTML={{__html: JSON.stringify(webSiteSchema)}}
 			  />
-			  <title>Karmit Patel - Frontend & UI/UX</title>
+			  <script
+			    type='application/ld+json'
+			    dangerouslySetInnerHTML={{__html: JSON.stringify(organizationSchema)}}
+			  />
+			  <script
+			    type='application/ld+json'
+			    dangerouslySetInnerHTML={{__html: JSON.stringify(profilePageSchema)}}
+			  />
 		  </Head>
 		
-		  <main className={styles.main}>
+		  <a href='#main-content' className='skip-to-main'>
+			  Skip to main content
+		  </a>
+		  <main id='main-content' className={styles.main} role='main' tabIndex={-1}>
 			  <Navbar
 			    active={activeTab} setActive={setActiveTab} opened={opened} setOpened={setOpened}
 			    navigateTo={navigateTo}
 			  />
 			  <Hero id={'home'} loaded={true}/>
-			  <Project {...aboutMe} name={'about'} id={'about'}/>
-			  <ServiceLanguage {...languages} id={'services'}/>
-			  <ServiceLanguage {...services} id={'languages'}/>
-			  {
-				  projects.map((project, index) => <Project {...project} key={project.title + index}/>)
-			  }
-			  <Strip>
-				  <Cta theme={'secondary'} shape={'full'}>
-					  See More at
-					  <Image src={'/assets/svg/Github.svg'} alt={'Github logo'} width={24} height={24}/>
-				  </Cta>
-			  </Strip>
-			  <Contact id={'contact'} loaded={true} setToast={setToast}/>
-			  <div className={`${styles.curtains} ${curtains ? styles.open : ''}`}>
-				  <p className={styles.message}>Loading website...</p>
-				  <div className={styles.cube}>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-				  </div>
+			  <article itemScope itemType='https://schema.org/AboutPage' aria-labelledby='about-heading'>
+				  <Project {...aboutMe} name={'about'} id={'about'}/>
+			  </article>
+			  <section itemScope itemType='https://schema.org/ItemList' aria-labelledby='services-heading'>
+				  <ServiceLanguage {...languages} id={'services'}/>
+			  </section>
+			  <section itemScope itemType='https://schema.org/Service' aria-labelledby='languages-heading'>
+				  <ServiceLanguage {...services} id={'languages'}/>
+			  </section>
+			  <section itemScope itemType='https://schema.org/ItemList' aria-labelledby='projects-heading'>
+				  <h2 id='projects-heading' className='sr-only'>Portfolio Projects</h2>
+				  {
+					  projects.map((project, index) => <Project {...project} key={project.title + index}/>)
+				  }
+			  </section>
+			  <aside role='complementary' aria-label='Additional Resources'>
+				  <Strip>
+					  <Cta theme={'secondary'} shape={'full'}>
+						  See More at
+						  <Image src={'/assets/svg/Github.svg'} alt={'Github logo - View more projects on GitHub'} width={24} height={24}/>
+					  </Cta>
+				  </Strip>
+			  </aside>
+		  <Contact id={'contact'} loaded={true} setToast={setToast}/>
+		  <div 
+		    className={`${styles.curtains} ${curtains ? styles.open : ''}`}
+		    role='status'
+		    aria-live='polite'
+		    aria-label='Loading status'
+		  >
+			  <p className={styles.message} aria-hidden={curtains}>
+				  Loading website...
+			  </p>
+			  <div className={styles.cube} aria-hidden='true'>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				  <div></div>
 			  </div>
+		  </div>
 		  </main>
 		  <Footer/>
-		  <div className={`${styles.toast} ${toast && toast.message ? styles.show : ''}`}>
+		  <div 
+		    className={`${styles.toast} ${toast && toast.message ? styles.show : ''}`}
+		    role='alert'
+		    aria-live='assertive'
+		    aria-atomic='true'
+		    aria-relevant='additions text'
+		  >
 			  {
 			    toast && toast.message.length &&
 				  <>
