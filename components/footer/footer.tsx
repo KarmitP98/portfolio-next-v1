@@ -56,7 +56,7 @@ const Footer = () => {
 							  <Cta theme={'secondary'} shape={'md'}>
 								  <Image 
 								    src={`/assets/svg/${link.iconName}.svg`} 
-								    alt={`${link.label} icon`} 
+								    alt='' 
 								    width={24} 
 								    height={24}
 								    aria-hidden='true'

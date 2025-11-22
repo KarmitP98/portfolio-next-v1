@@ -388,25 +388,33 @@ const Home: NextPage = () => {
 					  </Cta>
 				  </Strip>
 			  </aside>
-			  <Contact id={'contact'} loaded={true} setToast={setToast}/>
-			  <div className={`${styles.curtains} ${curtains ? styles.open : ''}`}>
-				  <p className={styles.message}>Loading website...</p>
-				  <div className={styles.cube}>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-					  <div></div>
-				  </div>
+		  <Contact id={'contact'} loaded={true} setToast={setToast}/>
+		  <div 
+		    className={`${styles.curtains} ${curtains ? styles.open : ''}`}
+		    role='status'
+		    aria-live='polite'
+		    aria-label='Loading status'
+		  >
+			  <p className={styles.message} aria-hidden={curtains}>
+				  Loading website...
+			  </p>
+			  <div className={styles.cube} aria-hidden='true'>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				  <div></div>
 			  </div>
+		  </div>
 		  </main>
 		  <Footer/>
 		  <div 
 		    className={`${styles.toast} ${toast && toast.message ? styles.show : ''}`}
 		    role='alert'
-		    aria-live='polite'
+		    aria-live='assertive'
 		    aria-atomic='true'
+		    aria-relevant='additions text'
 		  >
 			  {
 			    toast && toast.message.length &&

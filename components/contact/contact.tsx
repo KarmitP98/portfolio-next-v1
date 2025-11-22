@@ -2,29 +2,81 @@ import classes from './contact.module.scss';
 import Image from 'next/image';
 import Cta from '../cta/cta';
 import {CommonProps} from '../../models/common-props.model';
-import React, {FormEvent, useRef} from 'react';
+import React, {FormEvent, useRef, useState} from 'react';
 import {addMessage} from '../../firebase/store';
+import { log } from 'console';
 
 const Contact = (props: CommonProps) => {
 	
 	const nameRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const emailRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const messageRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
+	const [errors, setErrors] = useState<{name?: string; email?: string; message?: string}>({});
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	
+	const validateEmail = (email: string): boolean => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	};
+	
+	const validateForm = (): boolean => {
+		const newErrors: {name?: string; email?: string; message?: string} = {};
+		const name = nameRef.current.value.trim();
+		const email = emailRef.current.value.trim();
+		const message = messageRef.current.value.trim();
+		
+		if (!name) {
+			newErrors.name = 'Name is required';
+		}
+		
+		if (!email) {
+			newErrors.email = 'Email is required';
+		} else if (!validateEmail(email)) {
+			newErrors.email = 'Please enter a valid email address';
+		}
+		
+		if (!message) {
+			newErrors.message = 'Message is required';
+		} else if (message.length < 10) {
+			newErrors.message = 'Message must be at least 10 characters long';
+		}
+		
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0;
+	};
 	
 	const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		
-		const email = emailRef.current.value;
-		const name = nameRef.current.value;
-		const message = messageRef.current.value;
-		if (name && message && email) {
+		if (!validateForm() || isSubmitting) {
+			return;
+		}
+		
+		setIsSubmitting(true);
+		
+		const email = emailRef.current.value.trim();
+		const name = nameRef.current.value.trim();
+		const message = messageRef.current.value.trim();
+		console.log(name, email, message);
+		
+		try {
 			const response = await addMessage({name, email, message});
+			console.log(response);
 			clearForm();
 			props.setToast(response);
 			setTimeout(() => {
 				props.setToast(undefined);
 			}, 5000);
+		} catch (error) {
+			props.setToast({
+				success: false,
+				message: 'Failed to send message. Please try again later.'
+			});
+			setTimeout(() => {
+				props.setToast(undefined);
+			}, 5000);
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 	
@@ -32,6 +84,13 @@ const Contact = (props: CommonProps) => {
 		emailRef.current.value = '';
 		nameRef.current.value = '';
 		messageRef.current.value = '';
+		setErrors({});
+	};
+	
+	const handleInputChange = (field: 'name' | 'email' | 'message') => {
+		if (errors[field]) {
+			setErrors(prev => ({...prev, [field]: undefined}));
+		}
 	};
 	
 	
@@ -97,40 +156,87 @@ const Contact = (props: CommonProps) => {
 				  </address>
 			  </aside>
 			  <div className={classes.contentForm}>
-				  <form onSubmit={sendMessage} itemScope itemType='https://schema.org/ContactForm' aria-labelledby='contact-form-heading'>
+				  <form 
+				    onSubmit={sendMessage} 
+				    itemScope 
+				    itemType='https://schema.org/ContactForm' 
+				    aria-labelledby='contact-form-heading'
+				    noValidate
+				  >
 					  <h2 id='contact-form-heading'>Get in Touch</h2>
-					  <label htmlFor='fullname' className='sr-only'>Your Name</label>
-					  <input
-					    type='text' 
-					    name='fullname' 
-					    id='fullname' 
-					    placeholder={'What do I call you?'} 
-					    ref={nameRef}
-					    aria-required='true'
-					    aria-label='Enter your full name'
-					  />
-					  <label htmlFor='email' className='sr-only'>Your Email</label>
-					  <input 
-					    type='email' 
-					    name='email' 
-					    id='email' 
-					    placeholder={'Maybe an email...'} 
-					    ref={emailRef}
-					    aria-required='true'
-					    aria-label='Enter your email address'
-					  />
-					  <label htmlFor='message' className='sr-only'>Your Message</label>
-					  <textarea 
-					    id='message'
-					    name='message'
-					    placeholder={'Tell me your story and how I can make it better'} 
-					    ref={messageRef}
-					    aria-required='true'
-					    aria-label='Enter your message'
-					  />
+					  <div className={classes.formGroup}>
+						  <label htmlFor='fullname' className='sr-only'>Your Name</label>
+						  <input
+						    type='text' 
+						    name='fullname' 
+						    id='fullname' 
+						    placeholder={'What do I call you?'} 
+						    ref={nameRef}
+						    required
+						    aria-required='true'
+						    aria-label='Enter your full name'
+						    aria-invalid={errors.name ? 'true' : 'false'}
+						    aria-describedby={errors.name ? 'name-error' : undefined}
+						    onChange={() => handleInputChange('name')}
+						  />
+						  {errors.name && (
+						    <span id='name-error' className={classes.errorMessage} role='alert' aria-live='polite'>
+							    {errors.name}
+						    </span>
+						  )}
+					  </div>
+					  <div className={classes.formGroup}>
+						  <label htmlFor='email' className='sr-only'>Your Email</label>
+						  <input 
+						    type='email' 
+						    name='email' 
+						    id='email' 
+						    placeholder={'Maybe an email...'} 
+						    ref={emailRef}
+						    required
+						    aria-required='true'
+						    aria-label='Enter your email address'
+						    aria-invalid={errors.email ? 'true' : 'false'}
+						    aria-describedby={errors.email ? 'email-error' : undefined}
+						    onChange={() => handleInputChange('email')}
+						  />
+						  {errors.email && (
+						    <span id='email-error' className={classes.errorMessage} role='alert' aria-live='polite'>
+							    {errors.email}
+						    </span>
+						  )}
+					  </div>
+					  <div className={classes.formGroup}>
+						  <label htmlFor='message' className='sr-only'>Your Message</label>
+						  <textarea 
+						    id='message'
+						    name='message'
+						    placeholder={'Tell me your story and how I can make it better'} 
+						    ref={messageRef}
+						    required
+						    aria-required='true'
+						    aria-label='Enter your message'
+						    aria-invalid={errors.message ? 'true' : 'false'}
+						    aria-describedby={errors.message ? 'message-error' : undefined}
+						    onChange={() => handleInputChange('message')}
+						    rows={5}
+						  />
+						  {errors.message && (
+						    <span id='message-error' className={classes.errorMessage} role='alert' aria-live='polite'>
+							    {errors.message}
+						    </span>
+						  )}
+					  </div>
 					  <div className={classes.actionBar}>
-						  <Cta theme={'primary'} shape={'full'} type={'submit'} aria-label='Submit contact form'>
-							  Shoot Me A Message
+						  <Cta 
+						    theme={'primary'} 
+						    shape={'full'} 
+						    type={'submit'} 
+						    aria-label='Submit contact form'
+						    disabled={isSubmitting}
+						    aria-busy={isSubmitting}
+						  >
+							  {isSubmitting ? 'Sending...' : 'Shoot Me A Message'}
 							  <span className='material-icons-round' aria-hidden='true'>
 								  send
 							  </span>

@@ -6,8 +6,33 @@
   aspect-ratio: auto;
 }
 
+.logoButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+
+  &:focus-visible {
+	outline: 2px solid var(--accent-5);
+	outline-offset: 2px;
+	border-radius: 4px;
+  }
+
+  .logo {
+	height: 24px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .logo {
+	height: 100%;
+  }
+
+  .logoButton .logo {
 	height: 100%;
   }
 }
