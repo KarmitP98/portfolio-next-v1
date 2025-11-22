@@ -8,7 +8,7 @@
 	"start" : "next start" ,
 	"lint" : "next lint" ,
 	"build-and-deploy" : "npm run build && firebase deploy" ,
-	"firebase-deploy-hosting" : "firebase deploy --only hosting"
+	"firebase-deploy-hosting" : "yarn build && firebase deploy --only hosting"
   } ,
   "dependencies" : {
 	"firebase" : "^9.14.0" ,
