@@ -57,11 +57,9 @@ const Contact = (props: CommonProps) => {
 		const email = emailRef.current.value.trim();
 		const name = nameRef.current.value.trim();
 		const message = messageRef.current.value.trim();
-		console.log(name, email, message);
 		
 		try {
 			const response = await addMessage({name, email, message});
-			console.log(response);
 			clearForm();
 			props.setToast(response);
 			setTimeout(() => {
